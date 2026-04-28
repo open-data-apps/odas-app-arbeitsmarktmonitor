@@ -1,0 +1,36 @@
+{
+  "apiVersion": "1",
+  "titel": "Arbeitsmarktmonitor Dortmund",
+  "seitentitel": "Arbeitsmarktmonitor Dortmund",
+  "icon": "assets/odas-app-icon.svg",
+  "brandingCSS": "",
+  "brandingCSSFile": "./assets/branding.css",
+  "beschreibung": [
+    "Die App visualisiert zentrale Arbeitsmarktkennzahlen in Dortmund für den Zeitraum 1990 bis 2023.",
+    "Dargestellt werden KPI-Kacheln, Zeitreihen und thematische Tabellen mit Filterung nach Jahresbereich.",
+    "Die Datengrundlage stammt aus open-data.dortmund.de (OpenDataSoft) und basiert auf Daten der Bundesagentur für Arbeit / Stadt Dortmund.",
+    "## Datenquelle",
+    "Die Daten werden über die OpenDataSoft-API unter {{appinstanz.apiurl}} geladen."
+  ],
+  "kontakt": [
+    "Tel.: <a href='tel:+49711310093100'>0711-31009-3100</a><br>",
+    "Fax: <a href='tel:+49711310093108'>0711-31009-3108</a><br>",
+    "E-Mail: <a href='mailto:info@ondics.de'>info@ondics.de</a>"
+  ],
+  "impressum": [
+    "Ondics GmbH<br>",
+    "Wolfgang Clauss<br>Blumenstrasse 19<br>",
+    "<a href='https://www.ondics.de/' target='_blank'>https://www.ondics.de/</a>"
+  ],
+  "datenschutz": "Informationen zum Datenschutz finden Sie auf der Website des Datenanbieters.",
+  "urlODP": "https://open-data.dortmund.de",
+  "urlDaten": "https://open-data.dortmund.de/explore/dataset/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/information/",
+  "fusszeile": [
+    "(C) Copyright 2026 | ",
+    "für den Inhalt: Ondics GmbH | ",
+    "App-Entwickler: Ondics GmbH | ",
+    "Provided by: Ondics GmbH"
+  ],
+  "apiurl": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/records?limit=100&order_by=jahr+ASC",
+  "sprache": "de"
+}
