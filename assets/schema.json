@@ -1,0 +1,143 @@
+{
+  "$schema": "https://frictionlessdata.io/schemas/table-schema.json",
+  "name": "odas-app-arbeitsmarktmonitor",
+  "title": "Arbeitsmarktmonitor",
+  "fields": [
+    {
+      "name": "jahr",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "arbeitslose_mannlich_am_30_06",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "arbeitslose_weiblich_am_30_06",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "arbeitslose_insgesamt_am_30_06",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "arbeitslosenquote_ivh_auf_abhangig_zivile_erwerbspersonen_am_30_06",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "arbeitslosenquote_ivh_auf_alle_zivilen_erwerbspersonen_am_30_06",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "bestand_gemeldeter_offener_stellen_am_monatsende_am_30_06",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "verhaltnis_arbeitslose_gemeldete_offene_stellen_am_30_06",
+      "type": "string",
+      "description": "Optionales Feld",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "arbeitslose_mannlich_am_31_12",
+      "type": "string",
+      "description": "Optionales Feld",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "arbeitslose_weiblich_am_31_12",
+      "type": "string",
+      "description": "Optionales Feld",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "arbeitslose_insgesamt_am_31_12",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "arbeitslosennquote_ivh_auf_abhangig_zivile_erwerbspersonen_am_31_12",
+      "type": "string",
+      "description": "Optionales Feld",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "arbeitslosennquote_ivh_auf_alle_zivilen_erwerbspersonen_am_31_12",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "bestand_gemeldeter_offener_stellen_am_monatsende_am_31_12",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "verhaltnis_arbeitslose_gemeldete_offene_stellen_am_31_12",
+      "type": "string",
+      "description": "Optionales Feld",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "erzeugt_am",
+      "type": "string",
+      "description": "Optionales Feld",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "kommune",
+      "type": "string",
+      "description": "Optionales Feld",
+      "constraints": {
+        "required": false
+      }
+    }
+  ]
+}
