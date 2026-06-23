@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.5.0 - 2026-06-16
+
+- ENH: Methodikbox (ausklappbar) mit Datenquelle-Hinweis und Datenstand ergänzt (`datenquelleHinweis`, `datenStand`).
+- ENH: KPI-Erklärungstexte unter den Kennzahlen ergänzt (`kpiKontext1`–`kpiKontext5`).
+
+## 1.4.0 - 2026-06-16
+
+- Schale-4-Verstaendlichkeit ergaenzt: „Fuer wen ist diese App?"-Block in Beschreibung und README.
+- Konfigurierbarer Abschnitt „Weitere Informationen" mit weiterfuehrenden Links (neues Feld `weiterfuehrendeLinks`, leer = ausgeblendet).
+
 ## 1.3.0 - 2026-04-24
 
 - App auf allgemeine Arbeitsmarktmonitor-Nutzung umgestellt.

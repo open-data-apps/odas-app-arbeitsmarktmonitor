@@ -9,6 +9,8 @@
     "Die App visualisiert zentrale Arbeitsmarktkennzahlen in Dortmund für den Zeitraum 1990 bis 2023.",
     "Dargestellt werden KPI-Kacheln, Zeitreihen und thematische Tabellen mit Filterung nach Jahresbereich.",
     "Die Datengrundlage stammt aus open-data.dortmund.de (OpenDataSoft) und basiert auf Daten der Bundesagentur für Arbeit / Stadt Dortmund.",
+    "## Für wen ist diese App?",
+    "Diese App richtet sich an Bürgerinnen und Bürger in Dortmund, an die Verwaltung sowie an alle, die sich für Arbeitsmarktdaten interessieren. Voraussetzung ist kein spezielles Datenwissen – wer die Arbeitsmarktentwicklung verstehen möchte, kann die App direkt nutzen.",
     "## Datenquelle",
     "Die Daten werden über die OpenDataSoft-API unter {{appinstanz.apiurl}} geladen."
   ],
@@ -32,5 +34,13 @@
     "Provided by: Ondics GmbH"
   ],
   "apiurl": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/records?limit=100&order_by=jahr+ASC",
+  "weiterfuehrendeLinks": "<ul><li><a href='https://open-data.dortmund.de/' target='_blank'>Open Data Portal Dortmund</a></li><li><a href='https://www.arbeitsagentur.de/' target='_blank'>Bundesagentur für Arbeit</a></li></ul>",
+  "datenquelleHinweis": "<p>Die Arbeitsmarktdaten stammen aus der OpenDataSoft-API des jeweiligen <a href=\"https://open-data.dortmund.de/explore/dataset/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/information/\" target=\"_blank\" rel=\"noopener\">Datenportals</a> und basieren auf Daten der <a href=\"https://www.arbeitsagentur.de/\" target=\"_blank\" rel=\"noopener\">Bundesagentur für Arbeit</a>. Angezeigt werden Arbeitslosenquote, Arbeitslose insgesamt, Langzeitarbeitslose und gemeldete offene Stellen im konfigurierten Jahresbereich.</p><p>Vollständigkeit und Aktualität hängen vom Datenbestand der angebundenen OpenDataSoft-Quelle ab.</p>",
+  "datenStand": "Stand: abhängig von Datenquelle",
+  "kpiKontext1": "Jahr des neuesten Eintrags im Datenbestand.",
+  "kpiKontext2": "Arbeitslosenquote bezogen auf alle zivilen Erwerbspersonen.",
+  "kpiKontext3": "Absolute Anzahl arbeitslos gemeldeter Personen.",
+  "kpiKontext4": "Personen, die ein Jahr oder länger arbeitslos gemeldet sind.",
+  "kpiKontext5": "Bei der Bundesagentur für Arbeit gemeldete offene Stellen.",
   "sprache": "de"
 }

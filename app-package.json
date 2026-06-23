@@ -3,7 +3,7 @@
   "app-entwickler-name": "ondics-gmbh",
   "name-in-url": "arbeitsmarktmonitor",
   "name": "Arbeitsmarktmonitor",
-  "version": "1.3.0",
+  "version": "1.5.0",
   "odas-app-icon": "assets/odas-app-icon.svg",
   "app-icon": "assets/odas-app-icon.svg",
   "kurzbeschreibung": "Interaktive Open-Data-App zur Entwicklung von Arbeitslosigkeit, ALQ und offenen Stellen (1990-2023).",
@@ -99,6 +99,8 @@
         "Die App zeigt Arbeitsmarktkennzahlen im Zeitraum 1990 bis 2023.",
         "Dargestellt werden Kennzahlen, zeitliche Verläufe, Tabellen nach Themenfeldern sowie Vergleichswerte je Jahr.",
         "Die Datensaetze stammen aus einem Open Data Portal.",
+        "## Für wen ist diese App?",
+        "Diese App richtet sich an Bürgerinnen und Bürger in Dortmund, an die Verwaltung sowie an alle, die sich für Arbeitsmarktdaten interessieren. Voraussetzung ist kein spezielles Datenwissen – wer die Arbeitsmarktentwicklung verstehen möchte, kann die App direkt nutzen.",
         "## App-Anbieter",
         "Die App wird bereit gestellt von <a href=\"{{odp.anbieter.url}}\">{{odp.anbieter.name}}</a>",
         "## Datenquelle",
@@ -182,6 +184,15 @@
       "beispiel": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/records?limit=100&order_by=jahr+ASC",
       "erforderlich": "ja"
     },
+    "weiterfuehrendeLinks": {
+      "label": "Weiterführende Links",
+      "hilfe": "Verwandte Datensätze / Hintergrundquellen (HTML/Markdown). Leer = ausgeblendet.",
+      "format": {
+        "typ": "markdown"
+      },
+      "default": "<ul><li><a href='https://open-data.dortmund.de/' target='_blank'>Open Data Portal Dortmund</a></li><li><a href='https://www.arbeitsagentur.de/' target='_blank'>Bundesagentur für Arbeit</a></li></ul>",
+      "erforderlich": "nein"
+    },
     "sprache": {
       "label": "Sprache der App",
       "hilfe": "Angabe der App-Sprache",
@@ -191,6 +202,59 @@
         "default": "de"
       },
       "erforderlich": "ja"
+    },
+    "datenquelleHinweis": {
+      "label": "Methodik / Datenquelle-Hinweis",
+      "hilfe": "Herkunft, Erhebungsmethode und Limitierungen (HTML/Markdown). Leer = ausgeblendet.",
+      "format": {
+        "typ": "markdown"
+      },
+      "default": "<p>Die Arbeitsmarktdaten stammen aus der OpenDataSoft-API des jeweiligen <a href=\"https://open-data.dortmund.de/explore/dataset/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/information/\" target=\"_blank\" rel=\"noopener\">Datenportals</a> und basieren auf Daten der <a href=\"https://www.arbeitsagentur.de/\" target=\"_blank\" rel=\"noopener\">Bundesagentur für Arbeit</a>. Angezeigt werden Arbeitslosenquote, Arbeitslose insgesamt, Langzeitarbeitslose und gemeldete offene Stellen im konfigurierten Jahresbereich.</p><p>Vollständigkeit und Aktualität hängen vom Datenbestand der angebundenen OpenDataSoft-Quelle ab.</p>",
+      "erforderlich": "nein"
+    },
+    "datenStand": {
+      "label": "Datenstand",
+      "hilfe": "Freitext-Hinweis zum Stand der Daten. Leer = ausgeblendet.",
+      "format": {
+        "typ": "string"
+      },
+      "default": "Stand: abhängig von Datenquelle",
+      "erforderlich": "nein"
+    },
+    "kpiKontext1": {
+      "label": "KPI-Erklärung: Aktuellstes Datenjahr",
+      "hilfe": "Erklärtext unter dem KPI 'Aktuellstes Datenjahr'. Leer = ausgeblendet.",
+      "format": { "typ": "string" },
+      "default": "Jahr des neuesten Eintrags im Datenbestand.",
+      "erforderlich": "nein"
+    },
+    "kpiKontext2": {
+      "label": "KPI-Erklärung: ALQ gesamt",
+      "hilfe": "Erklärtext unter dem KPI 'ALQ gesamt'. Leer = ausgeblendet.",
+      "format": { "typ": "string" },
+      "default": "Arbeitslosenquote bezogen auf alle zivilen Erwerbspersonen.",
+      "erforderlich": "nein"
+    },
+    "kpiKontext3": {
+      "label": "KPI-Erklärung: Arbeitslose insgesamt",
+      "hilfe": "Erklärtext unter dem KPI 'Arbeitslose insgesamt'. Leer = ausgeblendet.",
+      "format": { "typ": "string" },
+      "default": "Absolute Anzahl arbeitslos gemeldeter Personen.",
+      "erforderlich": "nein"
+    },
+    "kpiKontext4": {
+      "label": "KPI-Erklärung: Langzeitarbeitslose",
+      "hilfe": "Erklärtext unter dem KPI 'Langzeitarbeitslose'. Leer = ausgeblendet.",
+      "format": { "typ": "string" },
+      "default": "Personen, die ein Jahr oder länger arbeitslos gemeldet sind.",
+      "erforderlich": "nein"
+    },
+    "kpiKontext5": {
+      "label": "KPI-Erklärung: Gemeldete offene Stellen",
+      "hilfe": "Erklärtext unter dem KPI 'Gemeldete offene Stellen'. Leer = ausgeblendet.",
+      "format": { "typ": "string" },
+      "default": "Bei der Bundesagentur für Arbeit gemeldete offene Stellen.",
+      "erforderlich": "nein"
     }
   }
 }

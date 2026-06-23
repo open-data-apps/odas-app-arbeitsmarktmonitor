@@ -173,11 +173,11 @@ function app(configdata, enclosingHtmlDivElement) {
 
     // KPI-Kacheln
     '<div class="row g-3 mb-4">',
-    kpiCard("kpi-year", "Aktuellstes Datenjahr", "", false),
-    kpiCard("kpi-alq", "ALQ gesamt (%)", "Stand 30.06.", true),
-    kpiCard("kpi-al", "Arbeitslose insges.", "Stand 30.06.", true),
-    kpiCard("kpi-lza", "Langzeitarbeitslose", "Stand 30.06.", true),
-    kpiCard("kpi-stellen", "Gem. offene Stellen", "Stand 30.06.", true),
+    kpiCard("kpi-year", "Aktuellstes Datenjahr", "", false, configdata.kpiKontext1),
+    kpiCard("kpi-alq", "ALQ gesamt (%)", "Stand 30.06.", true, configdata.kpiKontext2),
+    kpiCard("kpi-al", "Arbeitslose insges.", "Stand 30.06.", true, configdata.kpiKontext3),
+    kpiCard("kpi-lza", "Langzeitarbeitslose", "Stand 30.06.", true, configdata.kpiKontext4),
+    kpiCard("kpi-stellen", "Gem. offene Stellen", "Stand 30.06.", true, configdata.kpiKontext5),
     "</div>",
 
     // Filter
@@ -329,6 +329,9 @@ function app(configdata, enclosingHtmlDivElement) {
 
     "  </div>",
     "</div>",
+
+    renderMethodikbox(configdata),
+    renderWeitereInfos(configdata),
 
     "</div>", // am-root
   ].join("");
@@ -812,7 +815,12 @@ function app(configdata, enclosingHtmlDivElement) {
   }
 
   // ─── Hilfsfunktionen ─────────────────────────────────────────────────────────
-  function kpiCard(id, label, sub, showTrend) {
+  function kpiCard(id, label, sub, showTrend, kontext) {
+    var k = String(kontext || "").trim();
+    var kontextHtml = k
+      ? '<button class="am-kpi-info-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#am-kpi-kontext-' + id + '" aria-expanded="false" aria-controls="am-kpi-kontext-' + id + '" aria-label="Erklärung zu diesem Wert"><span class="am-kpi-info-icon" aria-hidden="true">ⓘ</span></button>' +
+        '<div id="am-kpi-kontext-' + id + '" class="collapse"><div class="am-kpi-kontext">' + esc(k) + "</div></div>"
+      : "";
     return (
       '<div class="col-sm-6 col-xl">' +
       '<div class="card h-100 shadow-sm border-0 bg-light">' +
@@ -831,6 +839,7 @@ function app(configdata, enclosingHtmlDivElement) {
           esc(sub) +
           "</div>"
         : "") +
+      kontextHtml +
       "</div></div></div>"
     );
   }
@@ -865,6 +874,39 @@ function app(configdata, enclosingHtmlDivElement) {
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
+  }
+
+  function renderWeitereInfos(cfg) {
+    var links = String((cfg && cfg.weiterfuehrendeLinks) || "").trim();
+    if (!links) return "";
+    return (
+      '<div class="card border-0 shadow-sm mt-4"><div class="card-body">' +
+      '<h2 class="h5 mb-2">Weitere Informationen</h2>' +
+      "<div>" +
+      links +
+      "</div></div></div>"
+    );
+  }
+
+  function renderMethodikbox(cfg) {
+    var hinweis = String((cfg && cfg.datenquelleHinweis) || "").trim();
+    var stand = String((cfg && cfg.datenStand) || "").trim();
+    if (!hinweis && !stand) return "";
+    var standHtml = stand
+      ? '<p class="text-muted small mb-2">' + esc(stand) + "</p>"
+      : "";
+    return (
+      '<div class="card border-0 shadow-sm mt-4"><div class="card-body">' +
+      '<button class="am-methodik-toggle btn btn-link text-decoration-none d-flex w-100 justify-content-between align-items-center p-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#am-methodik-body" aria-expanded="false" aria-controls="am-methodik-body">' +
+      '<h2 class="h5 mb-0">Methodik &amp; Datenquelle</h2>' +
+      '<span class="am-methodik-chevron" aria-hidden="true">&#9662;</span>' +
+      "</button>" +
+      '<div id="am-methodik-body" class="collapse mt-2">' +
+      standHtml +
+      hinweis +
+      "</div>" +
+      "</div></div>"
+    );
   }
 
   function hostFromUrl(url) {

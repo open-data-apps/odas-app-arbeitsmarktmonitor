@@ -22,6 +22,12 @@ Single Page Application mit Logo, Menue, Impressum/Datenschutz/Kontakt-Seiten un
 
 ---
 
+## Fuer wen ist diese App?
+
+Diese App richtet sich an Buergerinnen und Buerger in Dortmund, an die Verwaltung sowie an alle, die sich fuer Arbeitsmarktdaten interessieren. Voraussetzung ist kein spezielles Datenwissen – wer die Arbeitsmarktentwicklung verstehen moechte, kann die App direkt nutzen.
+
+---
+
 ## Datenformat
 
 Unterstuetzt **JSON** aus der OpenDataSoft API (`/api/explore/v2.1/catalog/datasets/.../records`).
