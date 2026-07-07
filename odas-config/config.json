@@ -6,13 +6,20 @@
   "brandingCSS": "",
   "brandingCSSFile": "./assets/branding.css",
   "beschreibung": [
-    "Die App visualisiert zentrale Arbeitsmarktkennzahlen in Dortmund für den Zeitraum 1990 bis 2023.",
-    "Dargestellt werden KPI-Kacheln, Zeitreihen und thematische Tabellen mit Filterung nach Jahresbereich.",
-    "Die Datengrundlage stammt aus open-data.dortmund.de (OpenDataSoft) und basiert auf Daten der Bundesagentur für Arbeit / Stadt Dortmund.",
-    "## Für wen ist diese App?",
-    "Diese App richtet sich an Bürgerinnen und Bürger in Dortmund, an die Verwaltung sowie an alle, die sich für Arbeitsmarktdaten interessieren. Voraussetzung ist kein spezielles Datenwissen – wer die Arbeitsmarktentwicklung verstehen möchte, kann die App direkt nutzen.",
-    "## Datenquelle",
-    "Die Daten werden über die OpenDataSoft-API unter {{appinstanz.apiurl}} geladen."
+    "<p>Der Arbeitsmarktmonitor zeigt die Entwicklung von Arbeitslosigkeit, Arbeitslosenquote und offenen Stellen über einen längeren Zeitraum.</p>",
+    "<p>Die App macht zentrale Arbeitsmarktdaten als Kennzahlen, Diagramme und Tabelle verständlich zugänglich.</p>",
+    "<h3>Inhalte</h3>",
+    "<p>Die App verarbeitet Jahreswerte zu Arbeitslosenquote, Arbeitslosenstruktur, Altersgruppen sowie Zu- und Abgängen.</p>",
+    "<p>Diagramme, KPIs und Tabellen helfen dabei, Entwicklungen und Größenordnungen schnell zu erfassen.</p>",
+    "<h3>Nutzung</h3>",
+    "<p>Wählen Sie Zeiträume oder Merkmale aus und vergleichen Sie die angezeigten Werte. Die App unterstützt die Einordnung der Daten, ersetzt aber keine arbeitsmarktfachliche Bewertung.</p>",
+    "<h3>Für wen ist diese App?</h3>",
+    "<p>Die App richtet sich an Bürger:innen, Verwaltung, Wirtschaftsförderung, Medien und Fachstellen, die Arbeitsmarktdaten nachvollziehen möchten. Besondere Datenkenntnisse sind für die Nutzung nicht erforderlich.</p>",
+    "<h3>Datenquelle</h3>",
+    "<p>Die Daten werden aus der OpenDataSoft-API des Open-Data-Portals Dortmund geladen.</p>",
+    "<ul><li><strong>Open Data Portal:</strong> <a href=\"https://open-data.dortmund.de\" target=\"_blank\" rel=\"noopener\">Open Data Dortmund</a></li><li><strong>Datensatz:</strong> <a href=\"https://open-data.dortmund.de/explore/dataset/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/information/\" target=\"_blank\" rel=\"noopener\">Arbeitslose, Arbeitslosenquote und offene Stellen seit 1990</a></li><li><strong>Ressource/API-Endpunkt:</strong> <a href=\"https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/records?limit=100&amp;order_by=jahr+ASC\" target=\"_blank\" rel=\"noopener\">OpenDataSoft Records API</a></li></ul>",
+    "<h3>Open Data App Store</h3>",
+    "<p>Diese App ist für den Open Data App Store vorbereitet und kann mit vergleichbaren Arbeitsmarkt- oder Statistikdaten anderer Portale konfiguriert werden.</p>"
   ],
   "kontakt": [
     "Tel.: <a href='tel:+49711310093100'>0711-31009-3100</a><br>",

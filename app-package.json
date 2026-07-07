@@ -9,14 +9,35 @@
   "kurzbeschreibung": "Interaktive Open-Data-App zur Entwicklung von Arbeitslosigkeit, ALQ und offenen Stellen (1990-2023).",
   "beschreibung": [
     "_multiline_",
-    "Die App visualisiert zentrale Arbeitsmarktkennzahlen für den Zeitraum 1990 bis 2023.",
-    "Dargestellt werden KPI-Kacheln, Zeitreihen, Tabellen mit Jahresfilter sowie Hervorhebungen für aktuelle und COVID-bedingte Ausreißer.",
-    "Die Datengrundlage stammt aus einer OpenDataSoft-Instanz und basiert auf Daten des jeweiligen Datenanbieters.",
-    ""
+    "<p>Der Arbeitsmarktmonitor zeigt die Entwicklung von Arbeitslosigkeit, Arbeitslosenquote und offenen Stellen über einen längeren Zeitraum.</p>",
+    "<p>Die App macht zentrale Arbeitsmarktdaten als Kennzahlen, Diagramme und Tabelle verständlich zugänglich.</p>",
+    "<h3>Inhalte</h3>",
+    "<p>Die App verarbeitet Jahreswerte zu Arbeitslosenquote, Arbeitslosenstruktur, Altersgruppen sowie Zu- und Abgängen.</p>",
+    "<p>Diagramme, KPIs und Tabellen helfen dabei, Entwicklungen und Größenordnungen schnell zu erfassen.</p>",
+    "<h3>Nutzung</h3>",
+    "<p>Wählen Sie Zeiträume oder Merkmale aus und vergleichen Sie die angezeigten Werte. Die App unterstützt die Einordnung der Daten, ersetzt aber keine arbeitsmarktfachliche Bewertung.</p>",
+    "<h3>Für wen ist diese App?</h3>",
+    "<p>Die App richtet sich an Bürger:innen, Verwaltung, Wirtschaftsförderung, Medien und Fachstellen, die Arbeitsmarktdaten nachvollziehen möchten. Besondere Datenkenntnisse sind für die Nutzung nicht erforderlich.</p>",
+    "<h3>Datenquelle</h3>",
+    "<p>Die Daten werden aus der OpenDataSoft-API des Open-Data-Portals Dortmund geladen.</p>",
+    "<ul><li><strong>Open Data Portal:</strong> <a href=\"https://open-data.dortmund.de\" target=\"_blank\" rel=\"noopener\">Open Data Dortmund</a></li><li><strong>Datensatz:</strong> <a href=\"https://open-data.dortmund.de/explore/dataset/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/information/\" target=\"_blank\" rel=\"noopener\">Arbeitslose, Arbeitslosenquote und offene Stellen seit 1990</a></li><li><strong>Ressource/API-Endpunkt:</strong> <a href=\"https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/records?limit=100&amp;order_by=jahr+ASC\" target=\"_blank\" rel=\"noopener\">OpenDataSoft Records API</a></li></ul>",
+    "<h3>Open Data App Store</h3>",
+    "<p>Diese App ist für den Open Data App Store vorbereitet und kann mit vergleichbaren Arbeitsmarkt- oder Statistikdaten anderer Portale konfiguriert werden.</p>"
   ],
-  "tags-funktion": ["Datenvisualisierung", "Zeitreihe", "Jahresvergleich"],
-  "tags-dateityp": ["JSON", "API"],
-  "tags-datenart": ["Arbeitsmarkt", "Soziales", "Statistik"],
+  "tags-funktion": [
+    "Datenvisualisierung",
+    "Zeitreihe",
+    "Jahresvergleich"
+  ],
+  "tags-dateityp": [
+    "JSON",
+    "API"
+  ],
+  "tags-datenart": [
+    "Arbeitsmarkt",
+    "Soziales",
+    "Statistik"
+  ],
   "screenshots": [
     "assets/Desktop_Screenshot_1.png",
     "assets/Desktop_Screenshot_2.png",
@@ -96,20 +117,20 @@
       },
       "default": [
         "_multiline_",
-        "Die App zeigt Arbeitsmarktkennzahlen im Zeitraum 1990 bis 2023.",
-        "Dargestellt werden Kennzahlen, zeitliche Verläufe, Tabellen nach Themenfeldern sowie Vergleichswerte je Jahr.",
-        "Die Datensaetze stammen aus einem Open Data Portal.",
-        "## Für wen ist diese App?",
-        "Diese App richtet sich an Bürgerinnen und Bürger in Dortmund, an die Verwaltung sowie an alle, die sich für Arbeitsmarktdaten interessieren. Voraussetzung ist kein spezielles Datenwissen – wer die Arbeitsmarktentwicklung verstehen möchte, kann die App direkt nutzen.",
-        "## App-Anbieter",
-        "Die App wird bereit gestellt von <a href=\"{{odp.anbieter.url}}\">{{odp.anbieter.name}}</a>",
-        "## Datenquelle",
-        "Die Daten kommen aus unserem Open Data Portal <a href=\"{{odp.url}}\">{{odp.name}}</a>",
-        "Die Datenquelle ist in unserem Open Data Portal <a href=\"{{appinstanz.apiurl}}\">{{appinstanz.apiurl}}</a>.",
-        "## Über diese App",
-        "Die App wurde entwickelt von <a href=\"{{app.developer.url}}\">{{app.developer.name}}</a>. App-Version: {{app.version}}.",
-        "## Open Data App Store",
-        "Der Open Data App Store betrieben von <a href=\"{{odas.betreiber.url}}\">{{odas.betreiber.name}}</a>"
+        "<p>Der Arbeitsmarktmonitor zeigt die Entwicklung von Arbeitslosigkeit, Arbeitslosenquote und offenen Stellen über einen längeren Zeitraum.</p>",
+        "<p>Die App macht zentrale Arbeitsmarktdaten als Kennzahlen, Diagramme und Tabelle verständlich zugänglich.</p>",
+        "<h3>Inhalte</h3>",
+        "<p>Die App verarbeitet Jahreswerte zu Arbeitslosenquote, Arbeitslosenstruktur, Altersgruppen sowie Zu- und Abgängen.</p>",
+        "<p>Diagramme, KPIs und Tabellen helfen dabei, Entwicklungen und Größenordnungen schnell zu erfassen.</p>",
+        "<h3>Nutzung</h3>",
+        "<p>Wählen Sie Zeiträume oder Merkmale aus und vergleichen Sie die angezeigten Werte. Die App unterstützt die Einordnung der Daten, ersetzt aber keine arbeitsmarktfachliche Bewertung.</p>",
+        "<h3>Für wen ist diese App?</h3>",
+        "<p>Die App richtet sich an Bürger:innen, Verwaltung, Wirtschaftsförderung, Medien und Fachstellen, die Arbeitsmarktdaten nachvollziehen möchten. Besondere Datenkenntnisse sind für die Nutzung nicht erforderlich.</p>",
+        "<h3>Datenquelle</h3>",
+        "<p>Die Daten werden aus der OpenDataSoft-API des Open-Data-Portals Dortmund geladen.</p>",
+        "<ul><li><strong>Open Data Portal:</strong> <a href=\"https://open-data.dortmund.de\" target=\"_blank\" rel=\"noopener\">Open Data Dortmund</a></li><li><strong>Datensatz:</strong> <a href=\"https://open-data.dortmund.de/explore/dataset/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/information/\" target=\"_blank\" rel=\"noopener\">Arbeitslose, Arbeitslosenquote und offene Stellen seit 1990</a></li><li><strong>Ressource/API-Endpunkt:</strong> <a href=\"https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/records?limit=100&amp;order_by=jahr+ASC\" target=\"_blank\" rel=\"noopener\">OpenDataSoft Records API</a></li></ul>",
+        "<h3>Open Data App Store</h3>",
+        "<p>Diese App ist für den Open Data App Store vorbereitet und kann mit vergleichbaren Arbeitsmarkt- oder Statistikdaten anderer Portale konfiguriert werden.</p>"
       ],
       "erforderlich": "ja"
     },
@@ -150,7 +171,10 @@
       "format": {
         "typ": "markdown"
       },
-      "default": ["_multiline_", "Alle Daten sind geschützt."],
+      "default": [
+        "_multiline_",
+        "Alle Daten sind geschützt."
+      ],
       "erforderlich": "ja"
     },
     "urlDaten": {
@@ -198,7 +222,9 @@
       "hilfe": "Angabe der App-Sprache",
       "format": {
         "typ": "dropdown",
-        "optionen": ["de"],
+        "optionen": [
+          "de"
+        ],
         "default": "de"
       },
       "erforderlich": "ja"
@@ -224,35 +250,45 @@
     "kpiKontext1": {
       "label": "KPI-Erklärung: Aktuellstes Datenjahr",
       "hilfe": "Erklärtext unter dem KPI 'Aktuellstes Datenjahr'. Leer = ausgeblendet.",
-      "format": { "typ": "string" },
+      "format": {
+        "typ": "string"
+      },
       "default": "Jahr des neuesten Eintrags im Datenbestand.",
       "erforderlich": "nein"
     },
     "kpiKontext2": {
       "label": "KPI-Erklärung: ALQ gesamt",
       "hilfe": "Erklärtext unter dem KPI 'ALQ gesamt'. Leer = ausgeblendet.",
-      "format": { "typ": "string" },
+      "format": {
+        "typ": "string"
+      },
       "default": "Arbeitslosenquote bezogen auf alle zivilen Erwerbspersonen.",
       "erforderlich": "nein"
     },
     "kpiKontext3": {
       "label": "KPI-Erklärung: Arbeitslose insgesamt",
       "hilfe": "Erklärtext unter dem KPI 'Arbeitslose insgesamt'. Leer = ausgeblendet.",
-      "format": { "typ": "string" },
+      "format": {
+        "typ": "string"
+      },
       "default": "Absolute Anzahl arbeitslos gemeldeter Personen.",
       "erforderlich": "nein"
     },
     "kpiKontext4": {
       "label": "KPI-Erklärung: Langzeitarbeitslose",
       "hilfe": "Erklärtext unter dem KPI 'Langzeitarbeitslose'. Leer = ausgeblendet.",
-      "format": { "typ": "string" },
+      "format": {
+        "typ": "string"
+      },
       "default": "Personen, die ein Jahr oder länger arbeitslos gemeldet sind.",
       "erforderlich": "nein"
     },
     "kpiKontext5": {
       "label": "KPI-Erklärung: Gemeldete offene Stellen",
       "hilfe": "Erklärtext unter dem KPI 'Gemeldete offene Stellen'. Leer = ausgeblendet.",
-      "format": { "typ": "string" },
+      "format": {
+        "typ": "string"
+      },
       "default": "Bei der Bundesagentur für Arbeit gemeldete offene Stellen.",
       "erforderlich": "nein"
     }
