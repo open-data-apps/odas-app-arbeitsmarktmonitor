@@ -3,7 +3,7 @@
   "app-entwickler-name": "ondics-gmbh",
   "name-in-url": "arbeitsmarktmonitor",
   "name": "Arbeitsmarktmonitor",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "odas-app-icon": "assets/odas-app-icon.svg",
   "app-icon": "assets/odas-app-icon.svg",
   "kurzbeschreibung": "Interaktive Open-Data-App zur Entwicklung von Arbeitslosigkeit, ALQ und offenen Stellen (1990-2023).",
@@ -183,6 +183,19 @@
         "laenge": 50
       },
       "default": "(C) Copyright {{jahr}} | App & Daten: {{odp.anbieter.name}} | App-Entwickler: {{app.developer.name}} | ODAS: {{odas.betreiber.name}}",
+      "erforderlich": "ja"
+    },
+    "proxyAktiv": {
+      "label": "ODAS-Proxy aktivieren",
+      "hilfe": "Mit ja werden Datenabrufe über den ODAS-Proxy gesendet. Der Proxy ist nur im ODAS-Live-System verfügbar; Entwicklung und Standalone verwenden nein.",
+      "default": "nein",
+      "format": {
+        "typ": "dropdown",
+        "optionen": [
+          "nein",
+          "ja"
+        ]
+      },
       "erforderlich": "ja"
     },
     "apiurl": {
