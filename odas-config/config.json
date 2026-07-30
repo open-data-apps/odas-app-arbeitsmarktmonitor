@@ -3,9 +3,9 @@
   "proxyAktiv": "nein",
   "titel": "Arbeitsmarktmonitor Dortmund",
   "seitentitel": "Arbeitsmarktmonitor Dortmund",
-  "icon": "assets/odas-app-icon.svg",
+  "icon": "../assets/odas-app-icon.svg",
   "brandingCSS": "",
-  "brandingCSSFile": "./assets/branding.css",
+  "brandingCSSFile": "../assets/branding.css",
   "beschreibung": [
     "<p>Der Arbeitsmarktmonitor zeigt die Entwicklung von Arbeitslosigkeit, Arbeitslosenquote und offenen Stellen über einen längeren Zeitraum.</p>",
     "<p>Die App macht zentrale Arbeitsmarktdaten als Kennzahlen, Diagramme und Tabelle verständlich zugänglich.</p>",
