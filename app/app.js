@@ -1056,7 +1056,7 @@ function app(configdata, enclosingHtmlDivElement) {
     if (S.chartJsReady) return;
     await new Promise(function (resolve, reject) {
       var s = document.createElement("script");
-      s.src = "https://cdn.jsdelivr.net/npm/chart.js";
+      s.src = "https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js";
       s.async = true;
       s.onload = function () {
         S.chartJsReady = true;
