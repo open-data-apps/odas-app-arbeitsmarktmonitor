@@ -194,9 +194,9 @@ function app(configdata, enclosingHtmlDivElement) {
       (extraClass ? ' class="' + extraClass + '"' : "") +
       ">" +
       '<span class="am-th-title">' +
-      esc(label) +
+      escapeHtml(label) +
       "</span>" +
-      (sub ? '<span class="am-th-sub">' + esc(sub) + "</span>" : "") +
+      (sub ? '<span class="am-th-sub">' + escapeHtml(sub) + "</span>" : "") +
       "</th>"
     );
   }
@@ -237,9 +237,9 @@ function app(configdata, enclosingHtmlDivElement) {
     // Header
     '<div class="d-flex align-items-start justify-content-between flex-wrap gap-2 mb-3">',
     "  <div>",
-    '    <h2 class="mb-1 fw-bold">' + esc(TITLE) + "</h2>",
+    '    <h2 class="mb-1 fw-bold">' + escapeHtml(TITLE) + "</h2>",
     '    <p class="text-muted small mb-0">',
-    '      <span class="badge bg-secondary me-1">' + esc(API_HOST) + "</span>",
+    '      <span class="badge bg-secondary me-1">' + escapeHtml(API_HOST) + "</span>",
     "      Bereitsteller: Datenanbieter (instanzabhängig)",
     "    </p>",
     "  </div>",
@@ -273,7 +273,7 @@ function app(configdata, enclosingHtmlDivElement) {
     '      <label class="form-label" for="f-chart">Zeitreihe anzeigen</label>',
     '      <select class="form-select form-select-sm" id="f-chart">',
     CHART_OPTIONS.map(function (o) {
-      return '<option value="' + o.value + '">' + esc(o.label) + "</option>";
+      return '<option value="' + o.value + '">' + escapeHtml(o.label) + "</option>";
     }).join(""),
     "      </select>",
     "    </div>",
@@ -486,7 +486,7 @@ function app(configdata, enclosingHtmlDivElement) {
       console.error(err);
       showAlert(
         "danger",
-        "Fehler beim Laden: " + esc(String(err.message || err)),
+        "Fehler beim Laden: " + escapeHtml(String(err.message || err)),
       );
     } finally {
       setLoading(false);
@@ -720,7 +720,7 @@ function app(configdata, enclosingHtmlDivElement) {
               rowStateClass(r, newestYear) +
               '">' +
               '<td class="am-num"><strong>' +
-              esc(r.jahr) +
+              escapeHtml(r.jahr) +
               "</strong>" +
               rowBadges(r, newestYear) +
               "</td>" +
@@ -772,7 +772,7 @@ function app(configdata, enclosingHtmlDivElement) {
               rowStateClass(r, newestYear) +
               '">' +
               '<td class="am-num"><strong>' +
-              esc(r.jahr) +
+              escapeHtml(r.jahr) +
               "</strong>" +
               rowBadges(r, newestYear) +
               "</td>" +
@@ -802,7 +802,7 @@ function app(configdata, enclosingHtmlDivElement) {
               rowStateClass(r, newestYear) +
               '">' +
               '<td class="am-num"><strong>' +
-              esc(r.jahr) +
+              escapeHtml(r.jahr) +
               "</strong>" +
               rowBadges(r, newestYear) +
               "</td>" +
@@ -836,7 +836,7 @@ function app(configdata, enclosingHtmlDivElement) {
               rowStateClass(r, newestYear) +
               '">' +
               '<td class="am-num"><strong>' +
-              esc(r.jahr) +
+              escapeHtml(r.jahr) +
               "</strong>" +
               rowBadges(r, newestYear) +
               "</td>" +
@@ -896,14 +896,14 @@ function app(configdata, enclosingHtmlDivElement) {
     var k = String(kontext || "").trim();
     var kontextHtml = k
       ? '<button class="am-kpi-info-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#am-kpi-kontext-' + id + '" aria-expanded="false" aria-controls="am-kpi-kontext-' + id + '" aria-label="Erklärung zu diesem Wert"><span class="am-kpi-info-icon" aria-hidden="true">ⓘ</span></button>' +
-        '<div id="am-kpi-kontext-' + id + '" class="collapse"><div class="am-kpi-kontext">' + esc(k) + "</div></div>"
+        '<div id="am-kpi-kontext-' + id + '" class="collapse"><div class="am-kpi-kontext">' + escapeHtml(k) + "</div></div>"
       : "";
     return (
       '<div class="col-sm-6 col-xl">' +
       '<div class="card h-100 shadow-sm border-0 bg-light">' +
       '<div class="card-body py-3">' +
       '<div class="text-muted small">' +
-      esc(label) +
+      escapeHtml(label) +
       "</div>" +
       '<div class="fs-4 fw-semibold am-kpi-value" id="' +
       id +
@@ -913,7 +913,7 @@ function app(configdata, enclosingHtmlDivElement) {
         : "") +
       (sub
         ? '<div class="text-muted" style="font-size:.72rem">' +
-          esc(sub) +
+          escapeHtml(sub) +
           "</div>"
         : "") +
       kontextHtml +
@@ -944,7 +944,7 @@ function app(configdata, enclosingHtmlDivElement) {
     return Math.round(parseFloat(v)).toLocaleString("de-DE");
   }
 
-  function esc(s) {
+  function escapeHtml(s) {
     return String(s == null ? "" : s)
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
@@ -970,7 +970,7 @@ function app(configdata, enclosingHtmlDivElement) {
     var stand = String((cfg && cfg.datenStand) || "").trim();
     if (!hinweis && !stand) return "";
     var standHtml = stand
-      ? '<p class="text-muted small mb-2">' + esc(stand) + "</p>"
+      ? '<p class="text-muted small mb-2">' + escapeHtml(stand) + "</p>"
       : "";
     return (
       '<div class="card border-0 shadow-sm mt-4"><div class="card-body">' +
@@ -1002,7 +1002,7 @@ function app(configdata, enclosingHtmlDivElement) {
     var el = q("#am-alert");
     if (el)
       el.innerHTML =
-        '<div class="alert alert-' + type + ' py-2">' + esc(text) + "</div>";
+        '<div class="alert alert-' + type + ' py-2">' + escapeHtml(text) + "</div>";
   }
 
   function clearAlert() {
