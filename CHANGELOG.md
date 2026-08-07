@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.16.0 - 2026-08-07
+- CHG: Bootstrap-Ziele instanzeindeutig (F-32): KPI-Kontext- und Methodik-Ziele (`#am-kpi-kontext-<id>` und `#am-methodik-body`) um eine Instanzkennung ergänzt — mehrere Instanzen derselben App auf einer Seite klappen ihre Panels unabhängig auf
+
 ## 1.15.0 - 2026-08-06
 - FIX: Datenschutzangabe beschreibt den tatsaechlichen Stand nach dem Vendoring (Welle G)
 

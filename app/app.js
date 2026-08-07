@@ -16,6 +16,8 @@
  * @param enclosingHtmlDivElement
  * @returns {null}
  */
+let amInstanzZaehler = 0;
+
 function isOdasProxyEnabled(configdata = {}) {
   return String(configdata.proxyAktiv || "").trim().toLowerCase() === "ja";
 }
@@ -95,6 +97,7 @@ async function fetchOdasJson(targetUrl, configdata = {}) {
 }
 
 function app(configdata, enclosingHtmlDivElement) {
+  const amUid = "i" + ++amInstanzZaehler;
   // ─── Konfiguration ───────────────────────────────────────────────────────────
   var TITLE =
     configdata && configdata.titel ? configdata.titel : "Arbeitsmarktmonitor";
@@ -895,8 +898,8 @@ function app(configdata, enclosingHtmlDivElement) {
   function kpiCard(id, label, sub, showTrend, kontext) {
     var k = String(kontext || "").trim();
     var kontextHtml = k
-      ? '<button class="am-kpi-info-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#am-kpi-kontext-' + id + '" aria-expanded="false" aria-controls="am-kpi-kontext-' + id + '" aria-label="Erklärung zu diesem Wert"><span class="am-kpi-info-icon" aria-hidden="true">ⓘ</span></button>' +
-        '<div id="am-kpi-kontext-' + id + '" class="collapse"><div class="am-kpi-kontext">' + escapeHtml(k) + "</div></div>"
+      ? '<button class="am-kpi-info-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#am-kpi-kontext-' + id + '-' + amUid + '" aria-expanded="false" aria-controls="am-kpi-kontext-' + id + '-' + amUid + '" aria-label="Erklärung zu diesem Wert"><span class="am-kpi-info-icon" aria-hidden="true">ⓘ</span></button>' +
+        '<div id="am-kpi-kontext-' + id + '-' + amUid + '" class="collapse"><div class="am-kpi-kontext">' + escapeHtml(k) + "</div></div>"
       : "";
     return (
       '<div class="col-sm-6 col-xl">' +
@@ -974,11 +977,11 @@ function app(configdata, enclosingHtmlDivElement) {
       : "";
     return (
       '<div class="card border-0 shadow-sm mt-4"><div class="card-body">' +
-      '<button class="am-methodik-toggle btn btn-link text-decoration-none d-flex w-100 justify-content-between align-items-center p-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#am-methodik-body" aria-expanded="false" aria-controls="am-methodik-body">' +
+      '<button class="am-methodik-toggle btn btn-link text-decoration-none d-flex w-100 justify-content-between align-items-center p-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#am-methodik-body-' + amUid + '" aria-expanded="false" aria-controls="am-methodik-body-' + amUid + '">' +
       '<h2 class="h5 mb-0">Methodik &amp; Datenquelle</h2>' +
       '<span class="am-methodik-chevron" aria-hidden="true">&#9662;</span>' +
       "</button>" +
-      '<div id="am-methodik-body" class="collapse mt-2">' +
+      '<div id="am-methodik-body-' + amUid + '" class="collapse mt-2">' +
       standHtml +
       hinweis +
       "</div>" +
