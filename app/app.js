@@ -578,6 +578,26 @@ function app(configdata, enclosingHtmlDivElement) {
       setKpi("kpi-lza", "nicht verfügbar");
       setKpiTrend("kpi-lza", "");
     }
+    if (S.status.merk === "geladen") {
+      var merkLatest = latestRow(S.raw.merk);
+      var merkPrev =
+        S.raw.merk.length > 1 ? S.raw.merk[S.raw.merk.length - 2] : null;
+      var alqLatest = S.status.alq === "geladen" ? latestRow(S.raw.alq) : null;
+      var year = String((alqLatest ? alqLatest.jahr : merkLatest.jahr) || "–");
+      var merk = S.raw.merk.find(function (r) {
+        return String(r.jahr) === year;
+      });
+
+      setKpi("kpi-lza", merk ? fmtI(merk.langzeitarbeitslose_am_30_06) : "–");
+      setKpiTrend(
+        "kpi-lza",
+        trendValue(
+          merkLatest ? merkLatest.langzeitarbeitslose_am_30_06 : null,
+          merkPrev ? merkPrev.langzeitarbeitslose_am_30_06 : null,
+          false,
+        ),
+      );
+    }
     if (S.status.alq !== "geladen") return;
 
     var latest = latestRow(S.raw.alq);
@@ -598,24 +618,6 @@ function app(configdata, enclosingHtmlDivElement) {
       "kpi-stellen",
       fmtI(latest.bestand_gemeldeter_offener_stellen_am_monatsende_am_30_06),
     );
-    if (S.status.merk === "geladen") {
-      var merk = S.raw.merk.find(function (r) {
-        return String(r.jahr) === year;
-      });
-      var merkLatest = latestRow(S.raw.merk);
-      var merkPrev =
-        S.raw.merk.length > 1 ? S.raw.merk[S.raw.merk.length - 2] : null;
-
-      setKpi("kpi-lza", merk ? fmtI(merk.langzeitarbeitslose_am_30_06) : "–");
-      setKpiTrend(
-        "kpi-lza",
-        trendValue(
-          merkLatest ? merkLatest.langzeitarbeitslose_am_30_06 : null,
-          merkPrev ? merkPrev.langzeitarbeitslose_am_30_06 : null,
-          false,
-        ),
-      );
-    }
 
     setKpiTrend(
       "kpi-alq",
