@@ -3,7 +3,7 @@
   "app-entwickler-name": "ondics-gmbh",
   "name-in-url": "arbeitsmarktmonitor",
   "name": "Arbeitsmarktmonitor",
-  "version": "1.16.0",
+  "version": "1.17.0",
   "odas-app-icon": "assets/odas-app-icon.svg",
   "app-icon": "assets/odas-app-icon.svg",
   "kurzbeschreibung": "Interaktive Open-Data-App zur Entwicklung von Arbeitslosigkeit, ALQ und offenen Stellen (1990-2023).",
@@ -19,8 +19,8 @@
     "<h3>Für wen ist diese App?</h3>",
     "<p>Die App richtet sich an Bürger:innen, Verwaltung, Wirtschaftsförderung, Medien und Fachstellen, die Arbeitsmarktdaten nachvollziehen möchten. Besondere Datenkenntnisse sind für die Nutzung nicht erforderlich.</p>",
     "<h3>Datenquelle</h3>",
-    "<p>Die Daten werden aus der OpenDataSoft-API des Open-Data-Portals Dortmund geladen.</p>",
-    "<ul><li><strong>Open Data Portal:</strong> <a href=\"https://open-data.dortmund.de\" target=\"_blank\" rel=\"noopener\">Open Data Dortmund</a></li><li><strong>Datensatz:</strong> <a href=\"https://open-data.dortmund.de/explore/dataset/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/information/\" target=\"_blank\" rel=\"noopener\">Arbeitslose, Arbeitslosenquote und offene Stellen seit 1990</a></li><li><strong>Ressource/API-Endpunkt:</strong> <a href=\"https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/records?limit=100&amp;order_by=jahr+ASC\" target=\"_blank\" rel=\"noopener\">OpenDataSoft Records API</a></li></ul>",
+    "<p>Die Daten werden aus vier Datensätzen der OpenDataSoft-API des Open-Data-Portals Dortmund geladen.</p>",
+    "<ul><li><strong>Open Data Portal:</strong> <a href=\"https://open-data.dortmund.de\" target=\"_blank\" rel=\"noopener\">Open Data Dortmund</a></li><li><strong>Datensätze:</strong><ul><li><a href=\"https://open-data.dortmund.de/explore/dataset/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/information/\" target=\"_blank\" rel=\"noopener\">Arbeitslose, Arbeitslosenquote und offene Stellen seit 1990</a></li><li><a href=\"https://open-data.dortmund.de/explore/dataset/ds-arbeitslose-nach-merkmalen-seit-1990/information/\" target=\"_blank\" rel=\"noopener\">Arbeitslose nach Merkmalen seit 1990</a></li><li><a href=\"https://open-data.dortmund.de/explore/dataset/ds-arbeitslose-nach-altersgruppen-seit-1997/information/\" target=\"_blank\" rel=\"noopener\">Arbeitslose nach Altersgruppen seit 1997</a></li><li><a href=\"https://open-data.dortmund.de/explore/dataset/ds-zu-und-abgang-von-arbeitslosen-seit-1990/information/\" target=\"_blank\" rel=\"noopener\">Zu- und Abgang von Arbeitslosen seit 1990</a></li></ul></li><li><strong>Ressourcen:</strong><ul><li><a href=\"https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/records?limit=100&amp;order_by=jahr+ASC\" target=\"_blank\" rel=\"noopener\">ALQ und offene Stellen (Records API)</a></li><li><a href=\"https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-nach-merkmalen-seit-1990/records?limit=100&amp;order_by=jahr+ASC\" target=\"_blank\" rel=\"noopener\">Arbeitslose nach Merkmalen (Records API)</a></li><li><a href=\"https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-nach-altersgruppen-seit-1997/records?limit=100&amp;order_by=jahr+ASC\" target=\"_blank\" rel=\"noopener\">Arbeitslose nach Altersgruppen (Records API)</a></li><li><a href=\"https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-zu-und-abgang-von-arbeitslosen-seit-1990/records?limit=100&amp;order_by=jahr+ASC\" target=\"_blank\" rel=\"noopener\">Zu- und Abgang (Records API)</a></li></ul></li></ul>",
     "<h3>Open Data App Store</h3>",
     "<p>Diese App ist für den Open Data App Store vorbereitet und kann mit vergleichbaren Arbeitsmarkt- oder Statistikdaten anderer Portale konfiguriert werden.</p>"
   ],
@@ -117,8 +117,8 @@
         "<h3>Für wen ist diese App?</h3>",
         "<p>Die App richtet sich an Bürger:innen, Verwaltung, Wirtschaftsförderung, Medien und Fachstellen, die Arbeitsmarktdaten nachvollziehen möchten. Besondere Datenkenntnisse sind für die Nutzung nicht erforderlich.</p>",
         "<h3>Datenquelle</h3>",
-        "<p>Die Daten werden aus der OpenDataSoft-API des Open-Data-Portals Dortmund geladen.</p>",
-        "<ul><li><strong>Open Data Portal:</strong> <a href=\"https://open-data.dortmund.de\" target=\"_blank\" rel=\"noopener\">Open Data Dortmund</a></li><li><strong>Datensatz:</strong> <a href=\"https://open-data.dortmund.de/explore/dataset/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/information/\" target=\"_blank\" rel=\"noopener\">Arbeitslose, Arbeitslosenquote und offene Stellen seit 1990</a></li><li><strong>Ressource/API-Endpunkt:</strong> <a href=\"https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/records?limit=100&amp;order_by=jahr+ASC\" target=\"_blank\" rel=\"noopener\">OpenDataSoft Records API</a></li></ul>",
+        "<p>Die Daten werden aus vier Datensätzen der OpenDataSoft-API des Open-Data-Portals Dortmund geladen.</p>",
+        "<ul><li><strong>Open Data Portal:</strong> <a href=\"https://open-data.dortmund.de\" target=\"_blank\" rel=\"noopener\">Open Data Dortmund</a></li><li><strong>Datensätze:</strong><ul><li><a href=\"https://open-data.dortmund.de/explore/dataset/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/information/\" target=\"_blank\" rel=\"noopener\">Arbeitslose, Arbeitslosenquote und offene Stellen seit 1990</a></li><li><a href=\"https://open-data.dortmund.de/explore/dataset/ds-arbeitslose-nach-merkmalen-seit-1990/information/\" target=\"_blank\" rel=\"noopener\">Arbeitslose nach Merkmalen seit 1990</a></li><li><a href=\"https://open-data.dortmund.de/explore/dataset/ds-arbeitslose-nach-altersgruppen-seit-1997/information/\" target=\"_blank\" rel=\"noopener\">Arbeitslose nach Altersgruppen seit 1997</a></li><li><a href=\"https://open-data.dortmund.de/explore/dataset/ds-zu-und-abgang-von-arbeitslosen-seit-1990/information/\" target=\"_blank\" rel=\"noopener\">Zu- und Abgang von Arbeitslosen seit 1990</a></li></ul></li><li><strong>Ressourcen:</strong><ul><li><a href=\"https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/records?limit=100&amp;order_by=jahr+ASC\" target=\"_blank\" rel=\"noopener\">ALQ und offene Stellen (Records API)</a></li><li><a href=\"https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-nach-merkmalen-seit-1990/records?limit=100&amp;order_by=jahr+ASC\" target=\"_blank\" rel=\"noopener\">Arbeitslose nach Merkmalen (Records API)</a></li><li><a href=\"https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-nach-altersgruppen-seit-1997/records?limit=100&amp;order_by=jahr+ASC\" target=\"_blank\" rel=\"noopener\">Arbeitslose nach Altersgruppen (Records API)</a></li><li><a href=\"https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-zu-und-abgang-von-arbeitslosen-seit-1990/records?limit=100&amp;order_by=jahr+ASC\" target=\"_blank\" rel=\"noopener\">Zu- und Abgang (Records API)</a></li></ul></li></ul>",
         "<h3>Open Data App Store</h3>",
         "<p>Diese App ist für den Open Data App Store vorbereitet und kann mit vergleichbaren Arbeitsmarkt- oder Statistikdaten anderer Portale konfiguriert werden.</p>"
       ],
@@ -199,6 +199,39 @@
       },
       "default": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/records?limit=100&order_by=jahr+ASC",
       "beispiel": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/records?limit=100&order_by=jahr+ASC",
+      "erforderlich": "ja"
+    },
+    "apiurlMerkmale": {
+      "label": "URL zu den Daten: Arbeitslose nach Merkmalen",
+      "hilfe": "Direkter Link zur API des Datensatzes 'Arbeitslose nach Merkmalen', von dem die Daten geholt werden",
+      "format": {
+        "typ": "url",
+        "laenge": 255
+      },
+      "default": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-nach-merkmalen-seit-1990/records?limit=100&order_by=jahr+ASC",
+      "beispiel": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-nach-merkmalen-seit-1990/records?limit=100&order_by=jahr+ASC",
+      "erforderlich": "ja"
+    },
+    "apiurlAltersgruppen": {
+      "label": "URL zu den Daten: Arbeitslose nach Altersgruppen",
+      "hilfe": "Direkter Link zur API des Datensatzes 'Arbeitslose nach Altersgruppen', von dem die Daten geholt werden",
+      "format": {
+        "typ": "url",
+        "laenge": 255
+      },
+      "default": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-nach-altersgruppen-seit-1997/records?limit=100&order_by=jahr+ASC",
+      "beispiel": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-nach-altersgruppen-seit-1997/records?limit=100&order_by=jahr+ASC",
+      "erforderlich": "ja"
+    },
+    "apiurlZuUndAbgang": {
+      "label": "URL zu den Daten: Zu- und Abgang von Arbeitslosen",
+      "hilfe": "Direkter Link zur API des Datensatzes 'Zu- und Abgang von Arbeitslosen', von dem die Daten geholt werden",
+      "format": {
+        "typ": "url",
+        "laenge": 255
+      },
+      "default": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-zu-und-abgang-von-arbeitslosen-seit-1990/records?limit=100&order_by=jahr+ASC",
+      "beispiel": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-zu-und-abgang-von-arbeitslosen-seit-1990/records?limit=100&order_by=jahr+ASC",
       "erforderlich": "ja"
     },
     "weiterfuehrendeLinks": {

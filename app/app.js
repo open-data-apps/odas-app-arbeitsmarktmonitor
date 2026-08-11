@@ -96,6 +96,21 @@ async function fetchOdasJson(targetUrl, configdata = {}) {
   return JSON.parse(await fetchOdasResource(targetUrl, configdata));
 }
 
+async function loadSource(url, key, fetchFn, state) {
+  if (!url) {
+    state.status[key] = "fehlerhaft";
+    return;
+  }
+  try {
+    const rows = await fetchFn(url);
+    state.raw[key] = rows;
+    state.status[key] = rows.length ? "geladen" : "leer";
+  } catch (_error) {
+    state.raw[key] = [];
+    state.status[key] = "fehlerhaft";
+  }
+}
+
 function app(configdata, enclosingHtmlDivElement) {
   const amUid = "i" + ++amInstanzZaehler;
   // ─── Konfiguration ───────────────────────────────────────────────────────────
@@ -103,6 +118,18 @@ function app(configdata, enclosingHtmlDivElement) {
     configdata && configdata.titel ? configdata.titel : "Arbeitsmarktmonitor";
   var DO_API =
     configdata && configdata.apiurl ? String(configdata.apiurl).trim() : "";
+  var API_MERK =
+    configdata && configdata.apiurlMerkmale
+      ? String(configdata.apiurlMerkmale).trim()
+      : "";
+  var API_ALTER =
+    configdata && configdata.apiurlAltersgruppen
+      ? String(configdata.apiurlAltersgruppen).trim()
+      : "";
+  var API_FLOW =
+    configdata && configdata.apiurlZuUndAbgang
+      ? String(configdata.apiurlZuUndAbgang).trim()
+      : "";
   var API_HOST = hostFromUrl(DO_API) || "API";
 
   var CHART_OPTIONS = [
@@ -153,6 +180,7 @@ function app(configdata, enclosingHtmlDivElement) {
   // ─── State ───────────────────────────────────────────────────────────────────
   var S = {
     raw: { alq: [], merk: [], alter: [], flow: [] },
+    status: { alq: "laden", merk: "laden", alter: "laden", flow: "laden" },
     filtered: { alq: [], merk: [], alter: [], flow: [] },
     yearFrom: "",
     yearTo: "",
@@ -454,22 +482,15 @@ function app(configdata, enclosingHtmlDivElement) {
 
   async function initAll() {
     setLoading(true);
-    if (!DO_API) {
-      showAlert(
-        "danger",
-        "Keine API-URL konfiguriert. Bitte appinstanz.apiurl setzen.",
-      );
-      setLoading(false);
-      return;
-    }
     showAlert("info", "Lade Daten von " + API_HOST + " …");
     try {
       await ensureChartJs();
-      var results = await fetchJson(DO_API);
-      S.raw.alq = results;
-      S.raw.merk = results;
-      S.raw.alter = results;
-      S.raw.flow = results;
+      await Promise.all([
+        loadSource(DO_API, "alq", fetchJson, S),
+        loadSource(API_MERK, "merk", fetchJson, S),
+        loadSource(API_ALTER, "alter", fetchJson, S),
+        loadSource(API_FLOW, "flow", fetchJson, S),
+      ]);
 
       var allYears = collectAvailableYears(S.raw);
       if (allYears.length) {
@@ -544,17 +565,26 @@ function app(configdata, enclosingHtmlDivElement) {
 
   // ─── KPIs ────────────────────────────────────────────────────────────────────
   function renderKpis() {
+    if (S.status.alq !== "geladen") {
+      setKpi("kpi-year", "nicht verfügbar");
+      setKpi("kpi-alq", "nicht verfügbar");
+      setKpi("kpi-al", "nicht verfügbar");
+      setKpi("kpi-stellen", "nicht verfügbar");
+      setKpiTrend("kpi-alq", "");
+      setKpiTrend("kpi-al", "");
+      setKpiTrend("kpi-stellen", "");
+    }
+    if (S.status.merk !== "geladen") {
+      setKpi("kpi-lza", "nicht verfügbar");
+      setKpiTrend("kpi-lza", "");
+    }
+    if (S.status.alq !== "geladen") return;
+
     var latest = latestRow(S.raw.alq);
     var previous =
       S.raw.alq.length > 1 ? S.raw.alq[S.raw.alq.length - 2] : null;
     if (!latest) return;
     var year = String(latest.jahr || "–");
-    var merk = S.raw.merk.find(function (r) {
-      return String(r.jahr) === year;
-    });
-    var merkLatest = latestRow(S.raw.merk);
-    var merkPrev =
-      S.raw.merk.length > 1 ? S.raw.merk[S.raw.merk.length - 2] : null;
 
     setKpi("kpi-year", year);
     setKpi(
@@ -568,7 +598,24 @@ function app(configdata, enclosingHtmlDivElement) {
       "kpi-stellen",
       fmtI(latest.bestand_gemeldeter_offener_stellen_am_monatsende_am_30_06),
     );
-    setKpi("kpi-lza", merk ? fmtI(merk.langzeitarbeitslose_am_30_06) : "–");
+    if (S.status.merk === "geladen") {
+      var merk = S.raw.merk.find(function (r) {
+        return String(r.jahr) === year;
+      });
+      var merkLatest = latestRow(S.raw.merk);
+      var merkPrev =
+        S.raw.merk.length > 1 ? S.raw.merk[S.raw.merk.length - 2] : null;
+
+      setKpi("kpi-lza", merk ? fmtI(merk.langzeitarbeitslose_am_30_06) : "–");
+      setKpiTrend(
+        "kpi-lza",
+        trendValue(
+          merkLatest ? merkLatest.langzeitarbeitslose_am_30_06 : null,
+          merkPrev ? merkPrev.langzeitarbeitslose_am_30_06 : null,
+          false,
+        ),
+      );
+    }
 
     setKpiTrend(
       "kpi-alq",
@@ -593,14 +640,6 @@ function app(configdata, enclosingHtmlDivElement) {
         latest.bestand_gemeldeter_offener_stellen_am_monatsende_am_30_06,
         previous &&
           previous.bestand_gemeldeter_offener_stellen_am_monatsende_am_30_06,
-        false,
-      ),
-    );
-    setKpiTrend(
-      "kpi-lza",
-      trendValue(
-        merkLatest ? merkLatest.langzeitarbeitslose_am_30_06 : null,
-        merkPrev ? merkPrev.langzeitarbeitslose_am_30_06 : null,
         false,
       ),
     );
@@ -704,6 +743,29 @@ function app(configdata, enclosingHtmlDivElement) {
   }
 
   // ─── Tabellen ────────────────────────────────────────────────────────────────
+  function sourceStatusRow(status, sourceName, colspan) {
+    if (status === "fehlerhaft") {
+      return (
+        '<tr><td colspan="' +
+        colspan +
+        '" class="border-0">' +
+        '<div class="alert alert-warning mb-0 mt-3">Die Datenquelle „' +
+        escapeHtml(sourceName) +
+        '" ist derzeit nicht verfügbar.</div></td></tr>'
+      );
+    }
+    if (status === "leer") {
+      return (
+        '<tr><td colspan="' +
+        colspan +
+        '" class="text-center text-muted py-4">Die Datenquelle „' +
+        escapeHtml(sourceName) +
+        '" enthält keine Datensätze.</td></tr>'
+      );
+    }
+    return "";
+  }
+
   function renderTables() {
     renderTableAlq();
     renderTableMerk();
@@ -712,6 +774,15 @@ function app(configdata, enclosingHtmlDivElement) {
   }
 
   function renderTableAlq() {
+    var tbody = q("#tbody-alq");
+    if (S.status.alq !== "geladen") {
+      tbody.innerHTML = sourceStatusRow(
+        S.status.alq,
+        "Arbeitslose, Arbeitslosenquote und offene Stellen",
+        10,
+      );
+      return;
+    }
     var rows = S.filtered.alq;
     var newestYear = latestRow(rows) ? String(latestRow(rows).jahr) : "";
     var html = !rows.length
@@ -760,10 +831,19 @@ function app(configdata, enclosingHtmlDivElement) {
             );
           })
           .join("");
-    q("#tbody-alq").innerHTML = html;
+    tbody.innerHTML = html;
   }
 
   function renderTableMerk() {
+    var tbody = q("#tbody-merk");
+    if (S.status.merk !== "geladen") {
+      tbody.innerHTML = sourceStatusRow(
+        S.status.merk,
+        "Arbeitslose nach Merkmalen",
+        8,
+      );
+      return;
+    }
     var rows = S.filtered.merk;
     var newestYear = latestRow(rows) ? String(latestRow(rows).jahr) : "";
     var html = !rows.length
@@ -790,10 +870,19 @@ function app(configdata, enclosingHtmlDivElement) {
             );
           })
           .join("");
-    q("#tbody-merk").innerHTML = html;
+    tbody.innerHTML = html;
   }
 
   function renderTableAlter() {
+    var tbody = q("#tbody-alter");
+    if (S.status.alter !== "geladen") {
+      tbody.innerHTML = sourceStatusRow(
+        S.status.alter,
+        "Arbeitslose nach Altersgruppen",
+        12,
+      );
+      return;
+    }
     var rows = S.filtered.alter;
     var newestYear = latestRow(rows) ? String(latestRow(rows).jahr) : "";
     var html = !rows.length
@@ -824,10 +913,19 @@ function app(configdata, enclosingHtmlDivElement) {
             );
           })
           .join("");
-    q("#tbody-alter").innerHTML = html;
+    tbody.innerHTML = html;
   }
 
   function renderTableFlow() {
+    var tbody = q("#tbody-flow");
+    if (S.status.flow !== "geladen") {
+      tbody.innerHTML = sourceStatusRow(
+        S.status.flow,
+        "Zu- und Abgang von Arbeitslosen",
+        7,
+      );
+      return;
+    }
     var rows = S.filtered.flow;
     var newestYear = latestRow(rows) ? String(latestRow(rows).jahr) : "";
     var html = !rows.length
@@ -865,7 +963,7 @@ function app(configdata, enclosingHtmlDivElement) {
             );
           })
           .join("");
-    q("#tbody-flow").innerHTML = html;
+    tbody.innerHTML = html;
   }
 
   function updateTableMeta() {

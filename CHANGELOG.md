@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.17.0 - 2026-08-11
+- FIX: Vier Datenquellen mit getrennten Zuständen (F-38): Die App lädt Arbeitslosenquote/Stellen, Merkmale, Altersgruppen sowie Zu-/Abgang jeweils aus dem eigenen Endpunkt (`apiurl`, `apiurlMerkmale`, `apiurlAltersgruppen`, `apiurlZuUndAbgang`) mit getrenntem Lade-/Fehlerstatus je Bereich. Nicht verfügbare oder leere Quellen zeigen im jeweiligen Tab eine fachliche Meldung statt plausibler Leerdaten; die Merkmals-KPIs melden dann „nicht verfügbar".
+
 ## 1.16.0 - 2026-08-07
 - CHG: Bootstrap-Ziele instanzeindeutig (F-32): KPI-Kontext- und Methodik-Ziele (`#am-kpi-kontext-<id>` und `#am-methodik-body`) um eine Instanzkennung ergänzt — mehrere Instanzen derselben App auf einer Seite klappen ihre Panels unabhängig auf
 

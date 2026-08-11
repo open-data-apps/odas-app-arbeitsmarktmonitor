@@ -138,6 +138,198 @@
       "constraints": {
         "required": false
       }
+    },
+    {
+      "name": "nichtdeutsche_am_30_06",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "schwerbehinderte_am_30_06",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "teilzeitarbeitssuchende_am_30_06",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "langzeitarbeitslose_am_30_06",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "nichtdeutsche_am_31_12",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "schwerbehinderte_am_31_12",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "langzeitarbeitslose_am_31_12",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "insgesamt_am_30_06",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "bis_unter_20_jahre_am_30_06",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "20_bis_unter_25_jahre_am_30_06",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "25_bis_unter_50_jahre_am_30_06",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "50_bis_unter_55_jahre_am_30_06",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "55_jahre_und_alter_am_30_06",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "insgesamt_am_31_12",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "bis_unter_20_jahre_am_31_12",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "20_bis_unter_25_jahre_am_31_12",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "25_bis_unter_50_jahre_am_31_12",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "55_jahre_und_alter_am_31_12",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "zugang_arbeitslosen",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "arbeitslose_nach_vorheriger_erwerbstatigkeit",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "arbeitslose_nach_vorheriger_betrieblicher_ausbildung",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "arbeitslose_ohne_vorherige_erwerbstatigkeit",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "abgang_arbeitslose",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "abgang_arbeitslose_in_erwerbstatigkeit",
+      "type": "string",
+      "description": "Wird in der App verwendet",
+      "constraints": {
+        "required": true
+      }
     }
   ]
 }
