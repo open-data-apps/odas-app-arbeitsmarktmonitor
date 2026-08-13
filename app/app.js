@@ -18,6 +18,24 @@
  */
 let amInstanzZaehler = 0;
 
+// Iterierbare Cleanup-Registry (F-57): je gemountetem Container ein Teardown.
+// app/app-base.js ruft onPageLeave() zu Beginn von loadPage() auf; die Registry
+// bleibt bewusst eine echte Map, damit onPageLeave sie durchlaufen und jeden
+// Eintrag loeschen kann. S bleibt lokal je app()-Aufruf; die Cleanup-Closure
+// schliesst genau ueber das S der jeweiligen Instanz.
+var amCleanups = new Map();
+
+function onPageLeave(page) {
+  amCleanups.forEach(function (cleanup, container) {
+    try {
+      cleanup();
+    } catch (error) {
+      console.warn("Fehler beim Abraeumen der Arbeitsmarktmonitor-Instanz:", error);
+    }
+    amCleanups.delete(container);
+  });
+}
+
 function isOdasProxyEnabled(configdata = {}) {
   return String(configdata.proxyAktiv || "").trim().toLowerCase() === "ja";
 }
@@ -187,7 +205,19 @@ function app(configdata, enclosingHtmlDivElement) {
     activeTable: "alq",
     chart: null,
     chartJsReady: false,
+    disposed: false,
   };
+
+  // F-57: Cleanup synchron unmittelbar nach Erzeugung von S registrieren,
+  // vor jeder asynchronen Arbeit. Beim Seitenwechsel setzt onPageLeave den
+  // disposed-Zustand, raeumt exakt S.chart ab und nullt ihn.
+  amCleanups.set(enclosingHtmlDivElement, function () {
+    S.disposed = true;
+    if (S.chart) {
+      S.chart.destroy();
+      S.chart = null;
+    }
+  });
 
   function isCovidYear(year) {
     return String(year) === "2020" || String(year) === "2021";
@@ -485,12 +515,15 @@ function app(configdata, enclosingHtmlDivElement) {
     showAlert("info", "Lade Daten von " + API_HOST + " …");
     try {
       await ensureChartJs();
+      if (S.disposed) return; // F-57: nach verspaetetem Chart.js-Load keine Requests mehr anstossen
       await Promise.all([
         loadSource(DO_API, "alq", fetchJson, S),
         loadSource(API_MERK, "merk", fetchJson, S),
         loadSource(API_ALTER, "alter", fetchJson, S),
         loadSource(API_FLOW, "flow", fetchJson, S),
       ]);
+
+      if (S.disposed) return; // F-57: nach verspaetetem Daten-Promise nicht mehr rendern
 
       var allYears = collectAvailableYears(S.raw);
       if (allYears.length) {
@@ -507,12 +540,14 @@ function app(configdata, enclosingHtmlDivElement) {
       renderAll();
       clearAlert();
     } catch (err) {
+      if (S.disposed) return; // F-57: nach Seitenwechsel keine Fehleranzeige mehr
       console.error(err);
       showAlert(
         "danger",
         "Fehler beim Laden: " + escapeHtml(String(err.message || err)),
       );
     } finally {
+      if (S.disposed) return; // F-57: nach Seitenwechsel keinen Loading-Zustand mehr setzen
       setLoading(false);
     }
   }
