@@ -1,6 +1,9 @@
 # Changelog
 
 
+## 1.21.0 - 2026-08-17
+- **CHG:** `instanz-config`-`category`-Vokabular auf Deutsch umgestellt (`allgemein`, `beschreibung`, `datenherkunft`, `kontakt-rechtliches`, `sonstiges`); die entfallenen Kategorien `metrics` und `advanced` wurden auf `beschreibung` bzw. `sonstiges` verteilt
+
 ## 1.20.0 - 2026-08-17
 - FIX: F-60-Restklasse geschlossen: `#am-root` war als statisches, JS-ungenutztes CSS-Hook-`id` implementiert — bei zwei Instanzen auf derselben Seite ein doppeltes `id`-Attribut (ungültiges HTML). Auf `class="am-root"` umgestellt, alle CSS-Selektoren in `app.css` von `#am-root` auf `.am-root` mitgezogen; funktional unverändert.
 
