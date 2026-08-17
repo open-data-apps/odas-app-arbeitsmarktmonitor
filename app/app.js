@@ -293,7 +293,7 @@ function app(configdata, enclosingHtmlDivElement) {
 
   // ─── HTML-Gerüst ─────────────────────────────────────────────────────────────
   enclosingHtmlDivElement.innerHTML = [
-    '<div id="am-root">',
+    '<div class="am-root">',
 
     // Header
     '<div class="d-flex align-items-start justify-content-between flex-wrap gap-2 mb-3">',

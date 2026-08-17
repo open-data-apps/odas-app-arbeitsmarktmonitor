@@ -1,6 +1,9 @@
 # Changelog
 
 
+## 1.20.0 - 2026-08-17
+- FIX: F-60-Restklasse geschlossen: `#am-root` war als statisches, JS-ungenutztes CSS-Hook-`id` implementiert — bei zwei Instanzen auf derselben Seite ein doppeltes `id`-Attribut (ungültiges HTML). Auf `class="am-root"` umgestellt, alle CSS-Selektoren in `app.css` von `#am-root` auf `.am-root` mitgezogen; funktional unverändert.
+
 ## 1.19.0 - 2026-08-13
 - FIX: Lifecycle-Ressourcen sauber abgeräumt (F-57): Die App registriert je Instanz ein synchrones Cleanup in einer top-level Map und definiert `function onPageLeave(page)`, das beim Seitenwechsel die Chart-Instanz per `.destroy()` abräumt und den disposed-Zustand setzt. Nachlaufende Async-Fortsetzungen (verspäteter Chart.js-Load oder verspätetes Daten-Promise) starten danach keine Datenabrufe mehr, rendern keine Chart und überschreiben weder den Seitennavigations-DOM noch zeigen sie einen Fehler- oder Loading-Zustand an.
 

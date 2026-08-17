@@ -1,13 +1,13 @@
 /* Arbeitsmarktmonitor */
 
-#am-root .am-table-panel {
+.am-root .am-table-panel {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   padding: 1rem;
 }
 
-#am-root .am-table-scroll {
+.am-root .am-table-scroll {
   max-height: 480px;
   overflow: auto;
   border: 1px solid rgba(33, 37, 41, 0.12);
@@ -15,11 +15,11 @@
   background: #fff;
 }
 
-#am-root .am-table {
+.am-root .am-table {
   margin-bottom: 0;
 }
 
-#am-root .am-table thead th {
+.am-root .am-table thead th {
   position: sticky;
   top: 0;
   z-index: 3;
@@ -28,13 +28,13 @@
   vertical-align: bottom;
 }
 
-#am-root .am-th-title {
+.am-root .am-th-title {
   display: block;
   font-weight: 600;
   line-height: 1.15;
 }
 
-#am-root .am-th-sub {
+.am-root .am-th-sub {
   display: block;
   font-size: 0.72rem;
   color: var(--bs-secondary-color, #6c757d);
@@ -42,48 +42,48 @@
   line-height: 1.1;
 }
 
-#am-root .am-table tbody tr:nth-child(even) > * {
+.am-root .am-table tbody tr:nth-child(even) > * {
   background-color: #f6f7f9;
 }
 
-#am-root .am-table tbody tr.is-latest > * {
+.am-root .am-table tbody tr.is-latest > * {
   background-color: #e7f1ff !important;
 }
 
-#am-root .am-table tbody tr.is-covid > * {
+.am-root .am-table tbody tr.is-covid > * {
   background-color: #fff7df !important;
 }
 
-#am-root .am-table tbody tr.is-latest > :first-child {
+.am-root .am-table tbody tr.is-latest > :first-child {
   box-shadow: inset 4px 0 0 #0d6efd;
 }
 
-#am-root .am-table tbody tr.is-covid > :first-child {
+.am-root .am-table tbody tr.is-covid > :first-child {
   box-shadow: inset 4px 0 0 #f0ad4e;
 }
 
-#am-root .am-table tbody tr.is-latest.is-covid > * {
+.am-root .am-table tbody tr.is-latest.is-covid > * {
   background: linear-gradient(90deg, #e7f1ff 0%, #fff7df 100%) !important;
 }
 
-#am-root .am-table tbody tr.is-latest.is-covid > :first-child {
+.am-root .am-table tbody tr.is-latest.is-covid > :first-child {
   box-shadow:
     inset 4px 0 0 #0d6efd,
     inset 7px 0 0 #f0ad4e;
 }
 
-#am-root .am-num,
-#am-root .am-kpi-value,
-#am-root .am-kpi-trend {
+.am-root .am-num,
+.am-root .am-kpi-value,
+.am-root .am-kpi-trend {
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum";
 }
 
-#am-root .am-important {
+.am-root .am-important {
   font-weight: 700;
 }
 
-#am-root .am-kpi-trend {
+.am-root .am-kpi-trend {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -93,24 +93,24 @@
   margin-top: 0.2rem;
 }
 
-#am-root .am-kpi-trend.up {
+.am-root .am-kpi-trend.up {
   color: #198754;
 }
 
-#am-root .am-kpi-trend.down {
+.am-root .am-kpi-trend.down {
   color: #dc3545;
 }
 
-#am-root .am-kpi-trend.neutral {
+.am-root .am-kpi-trend.neutral {
   color: var(--bs-secondary-color, #6c757d);
 }
 
-#am-root .am-row-badge {
+.am-root .am-row-badge {
   font-size: 0.65rem;
   vertical-align: middle;
 }
 
-#am-root .am-table-legend {
+.am-root .am-table-legend {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -120,13 +120,13 @@
   font-size: 0.84rem;
 }
 
-#am-root .am-legend-item {
+.am-root .am-legend-item {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
 }
 
-#am-root .am-legend-swatch {
+.am-root .am-legend-swatch {
   width: 0.9rem;
   height: 0.9rem;
   border-radius: 999px;
@@ -134,17 +134,17 @@
   border: 1px solid rgba(33, 37, 41, 0.16);
 }
 
-#am-root .am-legend-latest {
+.am-root .am-legend-latest {
   background: #e7f1ff;
   box-shadow: inset 0 0 0 3px #0d6efd;
 }
 
-#am-root .am-legend-covid {
+.am-root .am-legend-covid {
   background: #fff7df;
   box-shadow: inset 0 0 0 3px #f0ad4e;
 }
 
-#am-root .am-legend-zebra {
+.am-root .am-legend-zebra {
   background: #f6f7f9;
   box-shadow: inset 0 0 0 1px rgba(33, 37, 41, 0.12);
 }
