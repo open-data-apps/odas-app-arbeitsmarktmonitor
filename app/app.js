@@ -323,16 +323,16 @@ function app(configdata, enclosingHtmlDivElement) {
     '<div class="card shadow-sm mb-4"><div class="card-body">',
     '  <div class="row g-3 align-items-end">',
     '    <div class="col-sm-4 col-md-2">',
-    '      <label class="form-label" for="f-from">Jahr von</label>',
-    '      <select class="form-select form-select-sm" id="f-from"></select>',
+    '      <label class="form-label" for="f-from-' + amUid + '">Jahr von</label>',
+    '      <select class="form-select form-select-sm" id="f-from-' + amUid + '"></select>',
     "    </div>",
     '    <div class="col-sm-4 col-md-2">',
-    '      <label class="form-label" for="f-to">Jahr bis</label>',
-    '      <select class="form-select form-select-sm" id="f-to"></select>',
+    '      <label class="form-label" for="f-to-' + amUid + '">Jahr bis</label>',
+    '      <select class="form-select form-select-sm" id="f-to-' + amUid + '"></select>',
     "    </div>",
     '    <div class="col-sm-4 col-md-3">',
-    '      <label class="form-label" for="f-chart">Zeitreihe anzeigen</label>',
-    '      <select class="form-select form-select-sm" id="f-chart">',
+    '      <label class="form-label" for="f-chart-' + amUid + '">Zeitreihe anzeigen</label>',
+    '      <select class="form-select form-select-sm" id="f-chart-' + amUid + '">',
     CHART_OPTIONS.map(function (o) {
       return '<option value="' + o.value + '">' + escapeHtml(o.label) + "</option>";
     }).join(""),
@@ -478,17 +478,17 @@ function app(configdata, enclosingHtmlDivElement) {
   // ─── Events ──────────────────────────────────────────────────────────────────
   q("#am-reload").addEventListener("click", initAll);
 
-  q("#f-from").addEventListener("change", function (e) {
+  q(`#f-from-${amUid}`).addEventListener("change", function (e) {
     S.yearFrom = e.target.value;
     applyFilter();
     renderAll();
   });
-  q("#f-to").addEventListener("change", function (e) {
+  q(`#f-to-${amUid}`).addEventListener("change", function (e) {
     S.yearTo = e.target.value;
     applyFilter();
     renderAll();
   });
-  q("#f-chart").addEventListener("change", renderChart);
+  q(`#f-chart-${amUid}`).addEventListener("change", renderChart);
   q("#btn-reset").addEventListener("click", resetFilters);
 
   q("#sub-tabs").addEventListener("click", function (e) {
@@ -584,9 +584,9 @@ function app(configdata, enclosingHtmlDivElement) {
     var years = collectAvailableYears(S.raw);
     S.yearFrom = years[0] || "";
     S.yearTo = years[years.length - 1] || "";
-    q("#f-from").value = S.yearFrom;
-    q("#f-to").value = S.yearTo;
-    q("#f-chart").value = "alq";
+    q(`#f-from-${amUid}`).value = S.yearFrom;
+    q(`#f-to-${amUid}`).value = S.yearTo;
+    q(`#f-chart-${amUid}`).value = "alq";
     applyFilter();
     renderAll();
   }
@@ -688,7 +688,7 @@ function app(configdata, enclosingHtmlDivElement) {
     var empty = q("#chart-empty");
     if (!canvas || !window.Chart) return;
 
-    var sel = q("#f-chart").value;
+    var sel = q(`#f-chart-${amUid}`).value;
     var opt = CHART_OPTIONS.find(function (o) {
       return o.value === sel;
     });
@@ -1157,8 +1157,8 @@ function app(configdata, enclosingHtmlDivElement) {
   }
 
   function fillYearSelects(years) {
-    var fromSel = q("#f-from");
-    var toSel = q("#f-to");
+    var fromSel = q(`#f-from-${amUid}`);
+    var toSel = q(`#f-to-${amUid}`);
     fromSel.innerHTML = years
       .map(function (y) {
         return (
