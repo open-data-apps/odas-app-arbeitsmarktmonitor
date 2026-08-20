@@ -322,11 +322,11 @@ function app(configdata, enclosingHtmlDivElement) {
     "      Bereitsteller: Datenanbieter (instanzabhängig)",
     "    </p>",
     "  </div>",
-    '  <button class="btn btn-sm btn-outline-primary flex-shrink-0" id="am-reload" type="button">↻ Neu laden</button>',
+    '  <button class="btn btn-sm btn-outline-primary flex-shrink-0" id="am-reload-' + amUid + '" type="button">↻ Neu laden</button>',
     "</div>",
 
     // Alert
-    '<div id="am-alert" class="mb-3"></div>',
+    '<div id="am-alert-' + amUid + '" class="mb-3"></div>',
 
     // KPI-Kacheln
     '<div class="row g-3 mb-4">',
@@ -370,7 +370,7 @@ function app(configdata, enclosingHtmlDivElement) {
     "  </div>",
     '  <div class="card-body">',
     '    <div id="chart-empty" class="text-center text-muted py-4 d-none">Keine Daten.</div>',
-    '    <canvas id="am-chart"></canvas>',
+    '    <canvas id="am-chart-' + amUid + '"></canvas>',
     "  </div>",
     "</div>",
 
@@ -391,7 +391,7 @@ function app(configdata, enclosingHtmlDivElement) {
 
     '<div class="am-table-panel" id="panel-alq">',
     '  <div class="am-table-scroll">',
-    '    <table class="table table-hover table-sm align-middle mb-0 am-table" id="tbl-alq">',
+    '    <table class="table table-hover table-sm align-middle mb-0 am-table" id="tbl-alq-' + amUid + '">',
     '    <thead class="table-light"><tr>',
     "      <th>Jahr</th>",
     "      " + tableHeader("Arb.lose m.", "30.06", "text-end"),
@@ -417,7 +417,7 @@ function app(configdata, enclosingHtmlDivElement) {
 
     '<div class="am-table-panel d-none" id="panel-merk">',
     '  <div class="am-table-scroll">',
-    '    <table class="table table-hover table-sm align-middle mb-0 am-table" id="tbl-merk">',
+    '    <table class="table table-hover table-sm align-middle mb-0 am-table" id="tbl-merk-' + amUid + '">',
     '    <thead class="table-light"><tr>',
     "      <th>Jahr</th>",
     "      " + tableHeader("Nichtdeutsche", "30.06", "text-end"),
@@ -439,7 +439,7 @@ function app(configdata, enclosingHtmlDivElement) {
 
     '<div class="am-table-panel d-none" id="panel-alter">',
     '  <div class="am-table-scroll">',
-    '    <table class="table table-hover table-sm align-middle mb-0 am-table" id="tbl-alter">',
+    '    <table class="table table-hover table-sm align-middle mb-0 am-table" id="tbl-alter-' + amUid + '">',
     '    <thead class="table-light"><tr>',
     "      <th>Jahr</th>",
     "      " + tableHeader("Ges.", "30.06", "text-end am-important"),
@@ -465,7 +465,7 @@ function app(configdata, enclosingHtmlDivElement) {
 
     '<div class="am-table-panel d-none" id="panel-flow">',
     '  <div class="am-table-scroll">',
-    '    <table class="table table-hover table-sm align-middle mb-0 am-table" id="tbl-flow">',
+    '    <table class="table table-hover table-sm align-middle mb-0 am-table" id="tbl-flow-' + amUid + '">',
     '    <thead class="table-light"><tr>',
     "      <th>Jahr</th>",
     "      " + tableHeader("Zugang Arb.lose", "", "text-end am-important"),
@@ -494,7 +494,7 @@ function app(configdata, enclosingHtmlDivElement) {
   ].join("");
 
   // ─── Events ──────────────────────────────────────────────────────────────────
-  q("#am-reload").addEventListener("click", initAll);
+  q(`#am-reload-${amUid}`).addEventListener("click", initAll);
 
   q(`#f-from-${amUid}`).addEventListener("change", function (e) {
     S.yearFrom = e.target.value;
@@ -702,7 +702,7 @@ function app(configdata, enclosingHtmlDivElement) {
 
   // ─── Chart ───────────────────────────────────────────────────────────────────
   function renderChart() {
-    var canvas = q("#am-chart");
+    var canvas = q(`#am-chart-${amUid}`);
     var empty = q("#chart-empty");
     if (!canvas || !window.Chart) return;
 
@@ -1063,9 +1063,11 @@ function app(configdata, enclosingHtmlDivElement) {
       "</div>" +
       '<div class="fs-4 fw-semibold am-kpi-value" id="' +
       id +
+      "-" +
+      amUid +
       '">–</div>' +
       (showTrend
-        ? '<div class="am-kpi-trend" id="' + id + '-trend"></div>'
+        ? '<div class="am-kpi-trend" id="' + id + '-trend-' + amUid + '"></div>'
         : "") +
       (sub
         ? '<div class="text-muted" style="font-size:.72rem">' +
@@ -1078,12 +1080,12 @@ function app(configdata, enclosingHtmlDivElement) {
   }
 
   function setKpi(id, val) {
-    var el = q("#" + id);
+    var el = q("#" + id + "-" + amUid);
     if (el) el.textContent = val;
   }
 
   function setKpiTrend(id, html) {
-    var el = q("#" + id + "-trend");
+    var el = q("#" + id + "-trend-" + amUid);
     if (el) el.innerHTML = html || "";
   }
 
@@ -1155,19 +1157,19 @@ function app(configdata, enclosingHtmlDivElement) {
   }
 
   function showAlert(type, text) {
-    var el = q("#am-alert");
+    var el = q(`#am-alert-${amUid}`);
     if (el)
       el.innerHTML =
         '<div class="alert alert-' + type + ' py-2">' + escapeHtml(text) + "</div>";
   }
 
   function clearAlert() {
-    var el = q("#am-alert");
+    var el = q(`#am-alert-${amUid}`);
     if (el) el.innerHTML = "";
   }
 
   function setLoading(on) {
-    var btn = q("#am-reload");
+    var btn = q(`#am-reload-${amUid}`);
     if (btn) {
       btn.disabled = on;
       btn.textContent = on ? "↻ Lade …" : "↻ Neu laden";

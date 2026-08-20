@@ -1,6 +1,9 @@
 # Changelog
 
 
+## 1.23.0 - 2026-08-20
+- FIX: Generierte IDs (`am-*`, `kpi-*`, `tbl-*`) tragen jetzt durchgängig die Instanzkennung (F-71)
+
 ## 1.22.0 - 2026-08-17
 - `fetchOdasJson()` wirft jetzt bei nicht-JSON-Antworten (CSV, HTML, leerer Body) eine sprechende Konfigurationsfehlermeldung statt der rohen `JSON.parse`-Parserfehlermeldung (F-66)
 
