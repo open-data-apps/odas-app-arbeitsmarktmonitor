@@ -9,7 +9,7 @@
     "<p>Der Arbeitsmarktmonitor zeigt die Entwicklung von Arbeitslosigkeit, Arbeitslosenquote und offenen Stellen über frei wählbare Jahre.</p>",
     "<p>Er bereitet zentrale Arbeitsmarktdaten als Kennzahlen, Diagramm und Tabellen auf und macht Entwicklungen im Zeitverlauf nachvollziehbar.</p>",
     "<h2>Methodik</h2>",
-    "<p>Die App lädt vier getrennt konfigurierte OpenDataSoft-Quellen über die Records-API v2.1 (<code>apiurl</code>, <code>apiurlMerkmale</code>, <code>apiurlAltersgruppen</code>, <code>apiurlZuUndAbgang</code>) – im Live-Betrieb optional über den ODAS-Proxy (<code>proxyAktiv</code>), sonst direkt – und normalisiert Antworten im Browser über das Feld <code>results</code>; jede Quelle wird mit eigenem Status (<code>laden</code>/<code>geladen</code>/<code>leer</code>/<code>fehlerhaft</code>) geführt.</p>",
+    "<p>Die App lädt vier getrennt konfigurierte OpenDataSoft-Quellen über die Records-API v2.1 (<code>apiurls.alq-stellen</code>, <code>apiurls.merkmale</code>, <code>apiurls.altersgruppen</code>, <code>apiurls.zu-abgang</code>) – im Live-Betrieb optional über den ODAS-Proxy (<code>proxyAktiv</code>), sonst direkt – und normalisiert Antworten im Browser über das Feld <code>results</code>; jede Quelle wird mit eigenem Status (<code>laden</code>/<code>geladen</code>/<code>leer</code>/<code>fehlerhaft</code>) geführt.</p>",
     "<p>Jahreswerte werden über Filter <code>Jahr von</code>/<code>Jahr bis</code> gemeinsam auf alle Quellen angewendet; die Auswahl bestimmt die angezeigten Zeitreihen und Tabellen und setzt den Titelbereich des Diagramms.</p>",
     "<p>Für den Überblick berechnet die App aus dem neuesten verfügbaren Jahr Kennzahlen – aktuellstes Datenjahr, ALQ bezogen auf alle zivilen Erwerbspersonen, Arbeitslose insgesamt, Langzeitarbeitslose und gemeldete offene Stellen – und zeigt je KPI zusätzlich den Trend gegenüber dem Vorjahr; ist eine Quelle nicht geladen, erscheint „nicht verfügbar“.</p>",
     "<p>Das Diagramm stellt die ausgewählte Zeitreihe (<code>ALQ (alle zivilen EP)</code>, <code>Arbeitslose gesamt</code>, <code>Gemeldete offene Stellen</code>, <code>Langzeitarbeitslose</code>, <code>Zugang Arbeitslose</code>, <code>Abgang in Erwerbstätigkeit</code>) als Liniendiagramm über die gefilterten Jahre dar. Vier Daten-Tabs (<code>ALQ &amp; Stellen</code>, <code>Merkmale</code>, <code>Altersgruppen</code>, <code>Zu-/Abgang</code>) zeigen die gefilterten Tabellen mit Hervorhebung des neuesten Eintrags.</p>",
@@ -52,10 +52,28 @@
     "App-Entwickler: Ondics GmbH | ",
     "Provided by: Ondics GmbH"
   ],
-  "apiurl": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/records?limit=100&order_by=jahr+ASC",
-  "apiurlMerkmale": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-nach-merkmalen-seit-1990/records?limit=100&order_by=jahr+ASC",
-  "apiurlAltersgruppen": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-nach-altersgruppen-seit-1997/records?limit=100&order_by=jahr+ASC",
-  "apiurlZuUndAbgang": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-zu-und-abgang-von-arbeitslosen-seit-1990/records?limit=100&order_by=jahr+ASC",
+  "apiurls": [
+    {
+      "name": "alq-stellen",
+      "label": "Arbeitslose, Arbeitslosenquote und offene Stellen",
+      "url": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/records?limit=100&order_by=jahr+ASC"
+    },
+    {
+      "name": "merkmale",
+      "label": "Arbeitslose nach Merkmalen",
+      "url": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-nach-merkmalen-seit-1990/records?limit=100&order_by=jahr+ASC"
+    },
+    {
+      "name": "altersgruppen",
+      "label": "Arbeitslose nach Altersgruppen",
+      "url": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-nach-altersgruppen-seit-1997/records?limit=100&order_by=jahr+ASC"
+    },
+    {
+      "name": "zu-abgang",
+      "label": "Zu- und Abgang von Arbeitslosen",
+      "url": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-zu-und-abgang-von-arbeitslosen-seit-1990/records?limit=100&order_by=jahr+ASC"
+    }
+  ],
   "weiterfuehrendeLinks": "<ul><li><a href='https://open-data.dortmund.de/' target='_blank'>Open Data Portal Dortmund</a></li><li><a href='https://www.arbeitsagentur.de/' target='_blank'>Bundesagentur für Arbeit</a></li></ul>",
   "datenquelleHinweis": "<p>Die Arbeitsmarktdaten stammen aus der OpenDataSoft-API des jeweiligen <a href=\"https://open-data.dortmund.de/explore/dataset/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/information/\" target=\"_blank\" rel=\"noopener\">Datenportals</a> und basieren auf Daten der <a href=\"https://www.arbeitsagentur.de/\" target=\"_blank\" rel=\"noopener\">Bundesagentur für Arbeit</a>. Angezeigt werden Arbeitslosenquote, Arbeitslose insgesamt, Langzeitarbeitslose und gemeldete offene Stellen im konfigurierten Jahresbereich.</p><p>Vollständigkeit und Aktualität hängen vom Datenbestand der angebundenen OpenDataSoft-Quelle ab.</p>",
   "datenStand": "Stand: abhängig von Datenquelle",

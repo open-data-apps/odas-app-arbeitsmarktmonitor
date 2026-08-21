@@ -38,10 +38,10 @@ Unterstuetzt **JSON** aus der OpenDataSoft API (`/api/explore/v2.1/catalog/datas
 
 Die App nutzt vier Datensaetze aus einer OpenDataSoft-Instanz, je Themenbereich einen eigenen API-Endpunkt:
 
-- **Arbeitslose, Arbeitslosenquote und offene Stellen seit 1990** (`apiurl`) — Tab „ALQ & Stellen": Arbeitslose maennlich/weiblich/insgesamt, ALQ abhaengige/alle zivilen Erwerbspersonen, gemeldete offene Stellen (Stand 30.06.); Arbeitslose insgesamt, ALQ alle zivilen Erwerbspersonen, gemeldete offene Stellen (Stand 31.12.)
-- **Arbeitslose nach Merkmalen seit 1990** (`apiurlMerkmale`) — Tab „Merkmale": Nichtdeutsche, Schwerbehinderte, Teilzeitarbeitssuchende, Langzeitarbeitslose (Stand 30.06.); Nichtdeutsche, Schwerbehinderte, Langzeitarbeitslose (Stand 31.12.)
-- **Arbeitslose nach Altersgruppen seit 1997** (`apiurlAltersgruppen`) — Tab „Altersgruppen": Arbeitslose insgesamt sowie die Gruppen bis unter 20, 20–25, 25–50, 50–55, 55 Jahre und aelter (Stand 30.06.); Arbeitslose insgesamt sowie die Gruppen bis unter 20, 20–25, 25–50, 55 Jahre und aelter (Stand 31.12.)
-- **Zu- und Abgang von Arbeitslosen seit 1990** (`apiurlZuUndAbgang`) — Tab „Zu-/Abgang": Zugang Arbeitslose, davon nach vorheriger Erwerbstaetigkeit, nach betrieblicher Ausbildung, ohne vorherige Erwerbstaetigkeit, Abgang gesamt, Abgang in Erwerbstaetigkeit
+- **Arbeitslose, Arbeitslosenquote und offene Stellen seit 1990** (`apiurls.alq-stellen`) — Tab „ALQ & Stellen": Arbeitslose maennlich/weiblich/insgesamt, ALQ abhaengige/alle zivilen Erwerbspersonen, gemeldete offene Stellen (Stand 30.06.); Arbeitslose insgesamt, ALQ alle zivilen Erwerbspersonen, gemeldete offene Stellen (Stand 31.12.)
+- **Arbeitslose nach Merkmalen seit 1990** (`apiurls.merkmale`) — Tab „Merkmale": Nichtdeutsche, Schwerbehinderte, Teilzeitarbeitssuchende, Langzeitarbeitslose (Stand 30.06.); Nichtdeutsche, Schwerbehinderte, Langzeitarbeitslose (Stand 31.12.)
+- **Arbeitslose nach Altersgruppen seit 1997** (`apiurls.altersgruppen`) — Tab „Altersgruppen": Arbeitslose insgesamt sowie die Gruppen bis unter 20, 20–25, 25–50, 50–55, 55 Jahre und aelter (Stand 30.06.); Arbeitslose insgesamt sowie die Gruppen bis unter 20, 20–25, 25–50, 55 Jahre und aelter (Stand 31.12.)
+- **Zu- und Abgang von Arbeitslosen seit 1990** (`apiurls.zu-abgang`) — Tab „Zu-/Abgang": Zugang Arbeitslose, davon nach vorheriger Erwerbstaetigkeit, nach betrieblicher Ausbildung, ohne vorherige Erwerbstaetigkeit, Abgang gesamt, Abgang in Erwerbstaetigkeit
 
 Die vier Endpunkte werden getrennt geladen; ist eine Quelle nicht verfuegbar oder leer, meldet der jeweilige Tab das fachlich statt leere Tabellen zu zeigen.
 
@@ -79,10 +79,7 @@ App laeuft auf http://localhost:8090 (Konfiguration wird lokal geladen).
 | ------------- | ------------------------------------------- | ------- |
 | `titel`       | Anzeigetitel der App                        | ja      |
 | `seitentitel` | Browser-Tab-Titel                           | ja      |
-| `apiurl`      | URL zur OpenDataSoft API: ALQ und offene Stellen | ja  |
-| `apiurlMerkmale` | URL zur OpenDataSoft API: Arbeitslose nach Merkmalen | ja |
-| `apiurlAltersgruppen` | URL zur OpenDataSoft API: Arbeitslose nach Altersgruppen | ja |
-| `apiurlZuUndAbgang` | URL zur OpenDataSoft API: Zu- und Abgang von Arbeitslosen | ja |
+| `apiurls`     | URLs zu Datenressourcen (Array, vier Einträge, alle Pflicht): `alq-stellen` — URL zur OpenDataSoft API: ALQ und offene Stellen; `merkmale` — Arbeitslose nach Merkmalen; `altersgruppen` — Arbeitslose nach Altersgruppen; `zu-abgang` — Zu- und Abgang von Arbeitslosen | ja |
 | `urlDaten`    | URL zur Datensatz-Seite im Open Data Portal | ja      |
 | `sprache`     | Sprache der App (aktuell `de`)              | ja      |
 

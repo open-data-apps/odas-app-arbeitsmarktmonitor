@@ -3,7 +3,7 @@
   "app-entwickler-name": "ondics-gmbh",
   "name-in-url": "arbeitsmarktmonitor",
   "name": "Arbeitsmarktmonitor",
-  "version": "1.24.0",
+  "version": "1.25.0",
   "odas-app-icon": "assets/odas-app-icon.svg",
   "app-icon": "assets/odas-app-icon.svg",
   "kurzbeschreibung": "Interaktive Open-Data-App zur Entwicklung von Arbeitslosigkeit, ALQ und offenen Stellen (1990-2023).",
@@ -15,7 +15,7 @@
     "",
     "## Methodik",
     "",
-    "Die App lädt vier getrennt konfigurierte OpenDataSoft-Quellen über die Records-API v2.1 (`apiurl`, `apiurlMerkmale`, `apiurlAltersgruppen`, `apiurlZuUndAbgang`) – im Live-Betrieb optional über den ODAS-Proxy (`proxyAktiv`), sonst direkt – und normalisiert Antworten im Browser über das Feld `results`; jede Quelle wird mit eigenem Status (`laden`/`geladen`/`leer`/`fehlerhaft`) geführt.",
+    "Die App lädt vier getrennt konfigurierte OpenDataSoft-Quellen über die Records-API v2.1 (`apiurls.alq-stellen`, `apiurls.merkmale`, `apiurls.altersgruppen`, `apiurls.zu-abgang`) – im Live-Betrieb optional über den ODAS-Proxy (`proxyAktiv`), sonst direkt – und normalisiert Antworten im Browser über das Feld `results`; jede Quelle wird mit eigenem Status (`laden`/`geladen`/`leer`/`fehlerhaft`) geführt.",
     "",
     "Jahreswerte werden über Filter `Jahr von`/`Jahr bis` gemeinsam auf alle Quellen angewendet; die Auswahl bestimmt die angezeigten Zeitreihen und Tabellen und setzt den Titelbereich des Diagramms.",
     "",
@@ -146,7 +146,7 @@
         "",
         "## Methodik",
         "",
-        "Die App lädt vier getrennt konfigurierte OpenDataSoft-Quellen über die Records-API v2.1 (`apiurl`, `apiurlMerkmale`, `apiurlAltersgruppen`, `apiurlZuUndAbgang`) – im Live-Betrieb optional über den ODAS-Proxy (`proxyAktiv`), sonst direkt – und normalisiert Antworten im Browser über das Feld `results`; jede Quelle wird mit eigenem Status (`laden`/`geladen`/`leer`/`fehlerhaft`) geführt.",
+        "Die App lädt vier getrennt konfigurierte OpenDataSoft-Quellen über die Records-API v2.1 (`apiurls.alq-stellen`, `apiurls.merkmale`, `apiurls.altersgruppen`, `apiurls.zu-abgang`) – im Live-Betrieb optional über den ODAS-Proxy (`proxyAktiv`), sonst direkt – und normalisiert Antworten im Browser über das Feld `results`; jede Quelle wird mit eigenem Status (`laden`/`geladen`/`leer`/`fehlerhaft`) geführt.",
         "",
         "Jahreswerte werden über Filter `Jahr von`/`Jahr bis` gemeinsam auf alle Quellen angewendet; die Auswahl bestimmt die angezeigten Zeitreihen und Tabellen und setzt den Titelbereich des Diagramms.",
         "",
@@ -268,53 +268,45 @@
       },
       "erforderlich": "ja"
     },
-    "apiurl": {
-      "label": "URL zu den Daten",
+    "apiurls": {
+      "label": "URLs zu Datenressourcen",
       "category": "datenherkunft",
-      "hilfe": "Direkter Link zur API, von dem die Daten geholt werden",
+      "hilfe": "Direkter Download-, Datei- oder API-Endpunkt der tatsächlich verwendeten Datenquelle(n). Mehrere Einträge möglich.",
+      "typ": "array",
       "format": {
         "typ": "url",
-        "laenge": 255
+        "laenge": 500
       },
-      "default": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/records?limit=100&order_by=jahr+ASC",
-      "beispiel": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/records?limit=100&order_by=jahr+ASC",
-      "erforderlich": "ja"
-    },
-    "apiurlMerkmale": {
-      "label": "URL zu den Daten: Arbeitslose nach Merkmalen",
-      "category": "datenherkunft",
-      "hilfe": "Direkter Link zur API des Datensatzes 'Arbeitslose nach Merkmalen', von dem die Daten geholt werden",
-      "format": {
-        "typ": "url",
-        "laenge": 255
-      },
-      "default": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-nach-merkmalen-seit-1990/records?limit=100&order_by=jahr+ASC",
-      "beispiel": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-nach-merkmalen-seit-1990/records?limit=100&order_by=jahr+ASC",
-      "erforderlich": "ja"
-    },
-    "apiurlAltersgruppen": {
-      "label": "URL zu den Daten: Arbeitslose nach Altersgruppen",
-      "category": "datenherkunft",
-      "hilfe": "Direkter Link zur API des Datensatzes 'Arbeitslose nach Altersgruppen', von dem die Daten geholt werden",
-      "format": {
-        "typ": "url",
-        "laenge": 255
-      },
-      "default": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-nach-altersgruppen-seit-1997/records?limit=100&order_by=jahr+ASC",
-      "beispiel": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-nach-altersgruppen-seit-1997/records?limit=100&order_by=jahr+ASC",
-      "erforderlich": "ja"
-    },
-    "apiurlZuUndAbgang": {
-      "label": "URL zu den Daten: Zu- und Abgang von Arbeitslosen",
-      "category": "datenherkunft",
-      "hilfe": "Direkter Link zur API des Datensatzes 'Zu- und Abgang von Arbeitslosen', von dem die Daten geholt werden",
-      "format": {
-        "typ": "url",
-        "laenge": 255
-      },
-      "default": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-zu-und-abgang-von-arbeitslosen-seit-1990/records?limit=100&order_by=jahr+ASC",
-      "beispiel": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-zu-und-abgang-von-arbeitslosen-seit-1990/records?limit=100&order_by=jahr+ASC",
-      "erforderlich": "ja"
+      "urls": [
+        {
+          "name": "alq-stellen",
+          "label": "Arbeitslose, Arbeitslosenquote und offene Stellen",
+          "default": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/records?limit=100&order_by=jahr+ASC",
+          "beispiel": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/records?limit=100&order_by=jahr+ASC",
+          "erforderlich": "ja"
+        },
+        {
+          "name": "merkmale",
+          "label": "Arbeitslose nach Merkmalen",
+          "default": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-nach-merkmalen-seit-1990/records?limit=100&order_by=jahr+ASC",
+          "beispiel": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-nach-merkmalen-seit-1990/records?limit=100&order_by=jahr+ASC",
+          "erforderlich": "ja"
+        },
+        {
+          "name": "altersgruppen",
+          "label": "Arbeitslose nach Altersgruppen",
+          "default": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-nach-altersgruppen-seit-1997/records?limit=100&order_by=jahr+ASC",
+          "beispiel": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-nach-altersgruppen-seit-1997/records?limit=100&order_by=jahr+ASC",
+          "erforderlich": "ja"
+        },
+        {
+          "name": "zu-abgang",
+          "label": "Zu- und Abgang von Arbeitslosen",
+          "default": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-zu-und-abgang-von-arbeitslosen-seit-1990/records?limit=100&order_by=jahr+ASC",
+          "beispiel": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-zu-und-abgang-von-arbeitslosen-seit-1990/records?limit=100&order_by=jahr+ASC",
+          "erforderlich": "ja"
+        }
+      ]
     },
     "weiterfuehrendeLinks": {
       "label": "Weiterführende Links",

@@ -10,7 +10,7 @@
  * Bereitsteller: Datenanbieter (instanzabhängig)
  *
  * config.json (Beispiel):
- * { "titel": "Arbeitsmarktmonitor", "apiurl": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets" }
+ * { "titel": "Arbeitsmarktmonitor", "apiurls": [{ "name": "alq-stellen", "label": "...", "url": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets" }] }
  *
  * @param {Object} configdata
  * @param enclosingHtmlDivElement
@@ -110,6 +110,17 @@ async function fetchOdasResource(targetUrl, configdata = {}) {
   }
 }
 
+/**
+ * Löst eine benannte Datenressource aus configdata.apiurls auf.
+ * Neue apiurls-Form (typ: "array"); das frühere skalare apiurl wird nicht mehr gelesen.
+ * @returns {string} getrimmte URL, oder "" für den Zustand "keine Quelle konfiguriert"
+ */
+function getOdasApiUrl(configdata, name) {
+  const liste = Array.isArray(configdata && configdata.apiurls) ? configdata.apiurls : [];
+  const treffer = liste.find((eintrag) => eintrag && eintrag.name === name);
+  return String((treffer && treffer.url) || "").trim();
+}
+
 async function fetchOdasJson(targetUrl, configdata = {}) {
   const rawContent = await fetchOdasResource(targetUrl, configdata);
   try {
@@ -152,20 +163,10 @@ function app(configdata, enclosingHtmlDivElement) {
   // ─── Konfiguration ───────────────────────────────────────────────────────────
   var TITLE =
     configdata && configdata.titel ? configdata.titel : "Arbeitsmarktmonitor";
-  var DO_API =
-    configdata && configdata.apiurl ? String(configdata.apiurl).trim() : "";
-  var API_MERK =
-    configdata && configdata.apiurlMerkmale
-      ? String(configdata.apiurlMerkmale).trim()
-      : "";
-  var API_ALTER =
-    configdata && configdata.apiurlAltersgruppen
-      ? String(configdata.apiurlAltersgruppen).trim()
-      : "";
-  var API_FLOW =
-    configdata && configdata.apiurlZuUndAbgang
-      ? String(configdata.apiurlZuUndAbgang).trim()
-      : "";
+  var DO_API = getOdasApiUrl(configdata, "alq-stellen");
+  var API_MERK = getOdasApiUrl(configdata, "merkmale");
+  var API_ALTER = getOdasApiUrl(configdata, "altersgruppen");
+  var API_FLOW = getOdasApiUrl(configdata, "zu-abgang");
   var API_HOST = hostFromUrl(DO_API) || "API";
 
   var CHART_OPTIONS = [

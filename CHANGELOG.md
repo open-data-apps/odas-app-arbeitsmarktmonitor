@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.25.0 - 2026-08-21
+- **CHG:** Die vier skalaren Felder `apiurl`, `apiurlMerkmale`, `apiurlAltersgruppen`, `apiurlZuUndAbgang` durch das Array-Feld `apiurls` ersetzt (`typ: "array"`, Einträge `alq-stellen`, `merkmale`, `altersgruppen`, `zu-abgang`). Neuer Standard portfolioweit; `app.js` liest jede Quelle jetzt über `getOdasApiUrl(configdata, "<name>")`.
+
 ## 1.24.0 - 2026-08-20
 - Markdown-Metadaten: Paketbeschreibungen auf echtes Markdown umgestellt, exakte Identität Top-Level/Instanz hergestellt, lokale HTML-Fixture semantisch gespiegelt.
 
