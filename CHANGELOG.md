@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.26.0 - 2026-08-22
+- **CHG:** `version` in `app-package.json` zu `app-version` umbenannt.
+- **ENH:** Top-Level-Feld `app-package-version` ergänzt (Wert `"2"`: mehrere benannte API-URLs über `instanz-config.apiurls`).
+
 ## 1.25.0 - 2026-08-21
 - **CHG:** Die vier skalaren Felder `apiurl`, `apiurlMerkmale`, `apiurlAltersgruppen`, `apiurlZuUndAbgang` durch das Array-Feld `apiurls` ersetzt (`typ: "array"`, Einträge `alq-stellen`, `merkmale`, `altersgruppen`, `zu-abgang`). Neuer Standard portfolioweit; `app.js` liest jede Quelle jetzt über `getOdasApiUrl(configdata, "<name>")`.
 
