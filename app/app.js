@@ -528,6 +528,11 @@ function app(configdata, enclosingHtmlDivElement) {
   initAll();
 
   async function initAll() {
+    if (!DO_API && !API_MERK && !API_ALTER && !API_FLOW) {
+      showAlert("info", "Es ist keine Datenquelle konfiguriert.");
+      setLoading(false);
+      return;
+    }
     setLoading(true);
     showAlert("info", "Lade Daten von " + API_HOST + " …");
     try {
