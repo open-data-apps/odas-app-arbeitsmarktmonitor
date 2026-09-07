@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.27.1 - 2026-09-07
+- **FIX:** Frictionless-Härtung: 41 Schema-Titel ergänzt, Typen gegen Live-Antworten korrigiert (`integer`/`number`/`year` statt `string`); fehlendes Feld `darunter_25_jahre_und_alter_am_30_06` ergänzt; `{{odp.url}}`-Platzhalter in `urlDaten` durch echte Dortmund-URL ersetzt; `daten.beispiel`/`beispiel-url` befüllt. Alle 4 Records-Defaults bleiben (4B-Ausnahme, Rot-Beleg je Slot im REPORT).
+
 ## 1.27.0 - 2026-08-25
 - **CHG:** Proxy-Aufruf sendet die vollständige Ziel-URL statt nur Pfad+Query, damit die neue Origin-Allowlist-Prüfung der ODAS-Plattform greift (bisher implizite Auflösung gegen den ersten konfigurierten `apiurl`).
 - **FIX:** Tote Anbieter-Shortcodes in Kontakt/Impressum ersetzt (`{{odp.anbieter.url-extern}}` → `{{odp.anbieter.url}}`, `tel:{{odp.anbieter.telcode}}` → `tel:{{odp.anbieter.tel}}`).

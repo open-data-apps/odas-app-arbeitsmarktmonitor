@@ -3,7 +3,7 @@
   "app-entwickler-name": "ondics-gmbh",
   "name-in-url": "arbeitsmarktmonitor",
   "name": "Arbeitsmarktmonitor",
-  "app-version": "1.27.0",
+  "app-version": "1.27.1",
   "app-package-version": "2",
   "odas-app-icon": "assets/odas-app-icon.svg",
   "app-icon": "assets/odas-app-icon.svg",
@@ -74,8 +74,8 @@
   "daten": {
     "beschreibung": "Die App verarbeitet JSON-Datensaetze aus einer OpenDataSoft-API zu Arbeitslosenquote, Arbeitslosenstruktur, Altersgruppen sowie Zu- und Abgang.",
     "schema": "assets/schema.json",
-    "beispiel": "",
-    "beispiel-url": ""
+    "beispiel": "OpenDataSoft-Records-Antworten mit results[] und total_count (JSON) aus vier Dortmunder Datensätzen (Quote/Stellen, Merkmale, Altersgruppen, Zu-/Abgang). Beispiel-URL zeigt den Quote-Datensatz.",
+    "beispiel-url": "https://open-data.dortmund.de/api/explore/v2.1/catalog/datasets/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/records?limit=5"
   },
   "branding-css": "",
   "api-version": "1",
@@ -240,7 +240,7 @@
       "format": {
         "typ": "url"
       },
-      "default": "{{odp.url}}/explore/dataset/arbeitsmarktmonitor/information/",
+      "default": "https://open-data.dortmund.de/explore/dataset/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/information/",
       "beispiel": "https://open-data.dortmund.de/explore/dataset/ds-arbeitslose-arbeitslosenquote-und-offene-stellen-seit-1990/information/",
       "erforderlich": "ja"
     },

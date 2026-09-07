@@ -5,123 +5,138 @@
   "fields": [
     {
       "name": "jahr",
-      "type": "string",
+      "type": "year",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Jahr"
     },
     {
       "name": "arbeitslose_mannlich_am_30_06",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Arbeitslose Männer (Stichtag 30.06)"
     },
     {
       "name": "arbeitslose_weiblich_am_30_06",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Arbeitslose Frauen (Stichtag 30.06)"
     },
     {
       "name": "arbeitslose_insgesamt_am_30_06",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Arbeitslose insgesamt (Stichtag 30.06)"
     },
     {
       "name": "arbeitslosenquote_ivh_auf_abhangig_zivile_erwerbspersonen_am_30_06",
-      "type": "string",
+      "type": "number",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Arbeitslosenquote i. v. H. der abhängig zivilen Erwerbspersonen (Stichtag 30.06)"
     },
     {
       "name": "arbeitslosenquote_ivh_auf_alle_zivilen_erwerbspersonen_am_30_06",
-      "type": "string",
+      "type": "number",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Arbeitslosenquote i. v. H. aller zivilen Erwerbspersonen (Stichtag 30.06)"
     },
     {
       "name": "bestand_gemeldeter_offener_stellen_am_monatsende_am_30_06",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Bestand gemeldeter offener Stellen (Monatsende) (Stichtag 30.06)"
     },
     {
       "name": "verhaltnis_arbeitslose_gemeldete_offene_stellen_am_30_06",
-      "type": "string",
+      "type": "number",
       "description": "Optionales Feld",
       "constraints": {
         "required": false
-      }
+      },
+      "title": "Verhältnis Arbeitslose je gemeldete offene Stelle (Stichtag 30.06)"
     },
     {
       "name": "arbeitslose_mannlich_am_31_12",
-      "type": "string",
+      "type": "integer",
       "description": "Optionales Feld",
       "constraints": {
         "required": false
-      }
+      },
+      "title": "Arbeitslose Männer (Stichtag 31.12)"
     },
     {
       "name": "arbeitslose_weiblich_am_31_12",
-      "type": "string",
+      "type": "integer",
       "description": "Optionales Feld",
       "constraints": {
         "required": false
-      }
+      },
+      "title": "Arbeitslose Frauen (Stichtag 31.12)"
     },
     {
       "name": "arbeitslose_insgesamt_am_31_12",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Arbeitslose insgesamt (Stichtag 31.12)"
     },
     {
       "name": "arbeitslosennquote_ivh_auf_abhangig_zivile_erwerbspersonen_am_31_12",
-      "type": "string",
+      "type": "number",
       "description": "Optionales Feld",
       "constraints": {
         "required": false
-      }
+      },
+      "title": "Arbeitslosenquote i. v. H. der abhängig zivilen Erwerbspersonen (Stichtag 31.12)"
     },
     {
       "name": "arbeitslosennquote_ivh_auf_alle_zivilen_erwerbspersonen_am_31_12",
-      "type": "string",
+      "type": "number",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Arbeitslosenquote i. v. H. aller zivilen Erwerbspersonen (Stichtag 31.12)"
     },
     {
       "name": "bestand_gemeldeter_offener_stellen_am_monatsende_am_31_12",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Bestand gemeldeter offener Stellen (Monatsende) (Stichtag 31.12)"
     },
     {
       "name": "verhaltnis_arbeitslose_gemeldete_offene_stellen_am_31_12",
-      "type": "string",
+      "type": "number",
       "description": "Optionales Feld",
       "constraints": {
         "required": false
-      }
+      },
+      "title": "Verhältnis Arbeitslose je gemeldete offene Stelle (Stichtag 31.12)"
     },
     {
       "name": "erzeugt_am",
@@ -129,7 +144,8 @@
       "description": "Optionales Feld",
       "constraints": {
         "required": false
-      }
+      },
+      "title": "Erzeugt am"
     },
     {
       "name": "kommune",
@@ -137,198 +153,232 @@
       "description": "Optionales Feld",
       "constraints": {
         "required": false
-      }
+      },
+      "title": "Kommune"
     },
     {
       "name": "nichtdeutsche_am_30_06",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Nichtdeutsche (Stichtag 30.06)"
     },
     {
       "name": "schwerbehinderte_am_30_06",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Schwerbehinderte (Stichtag 30.06)"
     },
     {
       "name": "teilzeitarbeitssuchende_am_30_06",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Teilzeitarbeitsuchende (Stichtag 30.06)"
     },
     {
       "name": "langzeitarbeitslose_am_30_06",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Langzeitarbeitslose (Stichtag 30.06)"
     },
     {
       "name": "nichtdeutsche_am_31_12",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Nichtdeutsche (Stichtag 31.12)"
     },
     {
       "name": "schwerbehinderte_am_31_12",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Schwerbehinderte (Stichtag 31.12)"
     },
     {
       "name": "langzeitarbeitslose_am_31_12",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Langzeitarbeitslose (Stichtag 31.12)"
     },
     {
       "name": "insgesamt_am_30_06",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Insgesamt (Stichtag 30.06)"
     },
     {
       "name": "bis_unter_20_jahre_am_30_06",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Bis unter 20 Jahre (Stichtag 30.06)"
     },
     {
       "name": "20_bis_unter_25_jahre_am_30_06",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "20 bis unter 25 Jahre (Stichtag 30.06)"
     },
     {
       "name": "25_bis_unter_50_jahre_am_30_06",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "25 bis unter 50 Jahre (Stichtag 30.06)"
     },
     {
       "name": "50_bis_unter_55_jahre_am_30_06",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "50 bis unter 55 Jahre (Stichtag 30.06)"
     },
     {
       "name": "55_jahre_und_alter_am_30_06",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "55 Jahre und älter (Stichtag 30.06)"
     },
     {
       "name": "insgesamt_am_31_12",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Insgesamt (Stichtag 31.12)"
     },
     {
       "name": "bis_unter_20_jahre_am_31_12",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Bis unter 20 Jahre (Stichtag 31.12)"
     },
     {
       "name": "20_bis_unter_25_jahre_am_31_12",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "20 bis unter 25 Jahre (Stichtag 31.12)"
     },
     {
       "name": "25_bis_unter_50_jahre_am_31_12",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "25 bis unter 50 Jahre (Stichtag 31.12)"
     },
     {
       "name": "55_jahre_und_alter_am_31_12",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "55 Jahre und älter (Stichtag 31.12)"
     },
     {
       "name": "zugang_arbeitslosen",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Zugang Arbeitslose"
     },
     {
       "name": "arbeitslose_nach_vorheriger_erwerbstatigkeit",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Arbeitslose nach vorheriger Erwerbstätigkeit"
     },
     {
       "name": "arbeitslose_nach_vorheriger_betrieblicher_ausbildung",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Arbeitslose nach vorheriger betrieblicher Ausbildung"
     },
     {
       "name": "arbeitslose_ohne_vorherige_erwerbstatigkeit",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Arbeitslose ohne vorherige Erwerbstätigkeit"
     },
     {
       "name": "abgang_arbeitslose",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
-      }
+      },
+      "title": "Abgang Arbeitslose"
     },
     {
       "name": "abgang_arbeitslose_in_erwerbstatigkeit",
-      "type": "string",
+      "type": "integer",
       "description": "Wird in der App verwendet",
       "constraints": {
         "required": true
+      },
+      "title": "Abgang in Erwerbstätigkeit"
+    },
+    {
+      "name": "darunter_25_jahre_und_alter_am_30_06",
+      "type": "integer",
+      "description": "Zahl der Arbeitslosen ab 25 Jahren zum Stichtag 30.06. (in der Live-Antwort vorhanden, von der App nicht ausgewertet).",
+      "title": "Darunter 25 Jahre und älter (Stichtag 30.06)",
+      "constraints": {
+        "required": false
       }
     }
   ]
