@@ -278,6 +278,18 @@ function classifyOdasFehler(error, kontext = {}) {
   };
 }
 
+// Top-Level-Variante: renderOdasFehler läuft außerhalb von app() und darf
+// nicht auf das nested escapeHtml (siehe unten in app()) angewiesen sein.
+// Innerhalb von app() schattiert die dortige Funktion diese Deklaration.
+function escapeHtml(value) {
+  return String(value == null ? "" : value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 function renderOdasFehler(container, error, kontext = {}) {
   if (!container) return;
   const typWarn = validateUrlTypErwartung(kontext.url, kontext.erwarteterTyp);
@@ -396,6 +408,25 @@ function app(configdata, enclosingHtmlDivElement) {
       S.chart = null;
     }
   });
+
+  // Variante A (F-92): Typ- und Quellenpruefung vor dem ersten Fetch (4 Quellen).
+  const AM_QUELLEN = [
+    [DO_API, "alq-stellen", "Arbeitsmarkt-API (Stellen/ALQ)"],
+    [API_MERK, "merkmale", "Merkmal-API"],
+    [API_ALTER, "altersgruppen", "Altersgruppen-API"],
+    [API_FLOW, "zu-abgang", "Zu-/Abgangs-API"],
+  ];
+  for (const [amUrl, amName, amLabel] of AM_QUELLEN) {
+    if (isKeineDatenquelleKonfiguriert(amUrl)) {
+      renderOdasFehler(enclosingHtmlDivElement, new Error("Keine Datenquelle konfiguriert."), { url: amUrl, label: amLabel, typLabel: TYP_BEZEICHNUNG.ods21, erwarteterTyp: "ods21" });
+      return null;
+    }
+    const amTypWarn = validateUrlTypErwartung(amUrl, "ods21");
+    if (amTypWarn) {
+      renderOdasFehler(enclosingHtmlDivElement, new Error(amTypWarn), { url: amUrl, label: amLabel, typLabel: TYP_BEZEICHNUNG.ods21, erwarteterTyp: "ods21" });
+      return null;
+    }
+  }
 
   function isCovidYear(year) {
     return String(year) === "2020" || String(year) === "2021";
@@ -725,10 +756,15 @@ function app(configdata, enclosingHtmlDivElement) {
     } catch (err) {
       if (S.disposed) return; // F-57: nach Seitenwechsel keine Fehleranzeige mehr
       console.error(err);
-      showAlert(
-        "danger",
-        "Fehler beim Laden: " + escapeHtml(String(err.message || err)),
-      );
+      const amAlertBox = q(`#am-alert-${amUid}`);
+      if (amAlertBox) {
+        renderOdasFehler(amAlertBox, err, {
+          url: DO_API,
+          label: "Arbeitsmarkt-API (Stellen/ALQ)",
+          typLabel: TYP_BEZEICHNUNG.ods21,
+          erwarteterTyp: "ods21",
+        });
+      }
     } finally {
       if (S.disposed) return; // F-57: nach Seitenwechsel keinen Loading-Zustand mehr setzen
       setLoading(false);

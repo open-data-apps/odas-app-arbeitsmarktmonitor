@@ -1,6 +1,7 @@
 # Changelog
 
 ## 1.27.1 - 2026-09-07
+- **FIX:** Variante-A-Verdrahtung (F-92): Typprüfung (ods21) für alle 4 Quellen vor dem ersten Fetch; Ladefehler über `renderOdasFehler`; Fixtures auf v2.1-URLs umgestellt (1.27.1 -> 1.27.2).
 - **FIX:** Frictionless-Härtung: 41 Schema-Titel ergänzt, Typen gegen Live-Antworten korrigiert (`integer`/`number`/`year` statt `string`); fehlendes Feld `darunter_25_jahre_und_alter_am_30_06` ergänzt; `{{odp.url}}`-Platzhalter in `urlDaten` durch echte Dortmund-URL ersetzt; `daten.beispiel`/`beispiel-url` befüllt. Alle 4 Records-Defaults bleiben (4B-Ausnahme, Rot-Beleg je Slot im REPORT).
 
 ## 1.27.0 - 2026-08-25
