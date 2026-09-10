@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.27.3 - 2026-09-10
+- **FIX:** KPI-Kacheln folgen jetzt der Jahresauswahl (AM-B2). Vorher lasen sie den Gesamtdatensatz: Bei „Jahr bis 2015" zeigten die Tabellen 1990–2015, die Kacheln aber weiterhin 2023. Der Geltungsbereich steht nun über den Kacheln.
+- **FIX:** Nicht erreichbare Quellen nennen ihre Ursache (AM-B3): Die Fehlermeldung je Quelle wird gespeichert und in der Tabelle aufklappbar angezeigt, statt nur „ist derzeit nicht verfügbar".
+- **FIX:** Eine Metadaten-URL (`…/catalog/datasets/<id>` ohne `/records`) passiert die Typprüfung, liefert aber kein `results` — das erscheint jetzt als Formatfehler mit Handlungsanweisung statt als „enthält keine Datensätze" (AM-B4).
+- **FIX:** Quellenabrufe sind per `AbortController` abbrechbar (AM-B5); `fetchOdasResource`/`fetchOdasJson` reichen `signal` durch und werfen `AbortError` unverpackt.
+- **FIX:** `ensureChartJs` verwendet Script-ID und einen Lade-Promise je Instanz (AM-B6) — kein doppeltes Script-Element bei „Neu laden"; ein Fehlversuch bleibt wiederholbar.
+- **TECH:** `isLeerErgebnis` entfernt, `addToHead` gibt `""` zurück (AM-B7; `fetchOdasJson` bleibt helpercheck-Vertrag).
+
 ## 1.27.2 - 2026-09-08
 - **FIX:** Variante-A-Verdrahtung (F-92): Typprüfung (ods21) für alle 4 Quellen vor dem ersten Fetch; Ladefehler über `renderOdasFehler`; Fixtures auf v2.1-URLs umgestellt (1.27.1 -> 1.27.2).
 

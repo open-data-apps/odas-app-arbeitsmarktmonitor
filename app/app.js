@@ -103,18 +103,20 @@ async function fetchViaOdasProxy(targetUrl, options = {}) {
   return proxyData.content;
 }
 
-async function fetchOdasResource(targetUrl, configdata = {}) {
+async function fetchOdasResource(targetUrl, configdata = {}, options = {}) {
   if (isOdasProxyEnabled(configdata)) {
-    return fetchViaOdasProxy(targetUrl);
+    return fetchViaOdasProxy(targetUrl, options);
   }
 
   try {
-    const response = await fetch(targetUrl);
+    const response = await fetch(targetUrl, { signal: options && options.signal ? options.signal : undefined });
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
     }
     return response.text();
   } catch (error) {
+    // Abbruch ist kein Fehlerfall (AM-B5).
+    if (error && error.name === "AbortError") throw error;
     throw new Error(
       `Direkter Datenabruf fehlgeschlagen (${error.message}). Bitte prüfen Sie die Daten-URL und die CORS-Freigabe der Datenquelle.`,
     );
@@ -132,8 +134,8 @@ function getOdasApiUrl(configdata, name) {
   return String((treffer && treffer.url) || "").trim();
 }
 
-async function fetchOdasJson(targetUrl, configdata = {}) {
-  const rawContent = await fetchOdasResource(targetUrl, configdata);
+async function fetchOdasJson(targetUrl, configdata = {}, options = {}) {
+  const rawContent = await fetchOdasResource(targetUrl, configdata, options);
   try {
     return JSON.parse(rawContent);
   } catch (_error) {
@@ -304,28 +306,25 @@ function renderOdasFehler(container, error, kontext = {}) {
   container.innerHTML = `<div class="alert ${alertClass}" role="alert"><strong>${escapeHtml(titel)}</strong><p class="mb-1">${escapeHtml(info.hinweis)}</p>${urlZeile}<details class="small"><summary>Details</summary><code>${escapeHtml(info.detail || String(error))}</code></details></div>`;
 }
 
-function isLeerErgebnis(json) {
-  if (!json) return true;
-  if (Array.isArray(json) && json.length === 0) return true;
-  if (Array.isArray(json.records) && json.records.length === 0) return true;
-  if (Array.isArray(json.results) && json.results.length === 0) return true;
-  if (json.result && Array.isArray(json.result.records) && json.result.records.length === 0) return true;
-  return false;
-}
-
 
 async function loadSource(url, key, fetchFn, state) {
   if (!url) {
     state.status[key] = "fehlerhaft";
+    state.error[key] = "Keine URL konfiguriert.";
     return;
   }
   try {
     const rows = await fetchFn(url);
     state.raw[key] = rows;
     state.status[key] = rows.length ? "geladen" : "leer";
+    state.error[key] = "";
   } catch (_error) {
     state.raw[key] = [];
     state.status[key] = "fehlerhaft";
+    // AM-B3: Ursache festhalten — vorher blieb nur „nicht verfuegbar“ uebrig,
+    // obwohl die Fehlertexte (Proxy, Format, HTML statt JSON) vorliegen.
+    state.error[key] =
+      _error && _error.message ? String(_error.message) : String(_error || "");
   }
 }
 
@@ -389,20 +388,34 @@ function app(configdata, enclosingHtmlDivElement) {
   var S = {
     raw: { alq: [], merk: [], alter: [], flow: [] },
     status: { alq: "laden", merk: "laden", alter: "laden", flow: "laden" },
+    error: { alq: "", merk: "", alter: "", flow: "" },
     filtered: { alq: [], merk: [], alter: [], flow: [] },
     yearFrom: "",
     yearTo: "",
     activeTable: "alq",
     chart: null,
-    chartJsReady: false,
+    chartJsPromise: null,
+    loadController: null,
     disposed: false,
   };
 
   // F-57: Cleanup synchron unmittelbar nach Erzeugung von S registrieren,
   // vor jeder asynchronen Arbeit. Beim Seitenwechsel setzt onPageLeave den
   // disposed-Zustand, raeumt exakt S.chart ab und nullt ihn.
+  // AM-B1: Vorgaenger-Instanz desselben Containers zuerst abraeumen — sonst
+  // leakt bei Same-Page-Re-Render die alte Chart-Instanz.
+  const amVorherigerCleanup = amCleanups.get(enclosingHtmlDivElement);
+  if (amVorherigerCleanup) {
+    try {
+      amVorherigerCleanup();
+    } catch (_e) {}
+  }
   amCleanups.set(enclosingHtmlDivElement, function () {
     S.disposed = true;
+    if (S.loadController) {
+      S.loadController.abort();
+      S.loadController = null;
+    }
     if (S.chart) {
       S.chart.destroy();
       S.chart = null;
@@ -520,6 +533,7 @@ function app(configdata, enclosingHtmlDivElement) {
     '<div id="am-alert-' + amUid + '" class="mb-3"></div>',
 
     // KPI-Kacheln
+    '<p class="text-muted small mb-2" id="am-kpi-scope-' + amUid + '"></p>',
     '<div class="row g-3 mb-4">',
     kpiCard("kpi-year", "Aktuellstes Datenjahr", "", false, configdata.kpiKontext1),
     kpiCard("kpi-alq", "ALQ gesamt (%)", "Stand 30.06.", true, configdata.kpiKontext2),
@@ -730,11 +744,12 @@ function app(configdata, enclosingHtmlDivElement) {
     try {
       await ensureChartJs();
       if (S.disposed) return; // F-57: nach verspaetetem Chart.js-Load keine Requests mehr anstossen
+      S.loadController = new AbortController();
       await Promise.all([
-        loadSource(DO_API, "alq", fetchJson, S),
-        loadSource(API_MERK, "merk", fetchJson, S),
-        loadSource(API_ALTER, "alter", fetchJson, S),
-        loadSource(API_FLOW, "flow", fetchJson, S),
+        loadSource(DO_API, "alq", function (u) { return fetchJson(u, S.loadController.signal); }, S),
+        loadSource(API_MERK, "merk", function (u) { return fetchJson(u, S.loadController.signal); }, S),
+        loadSource(API_ALTER, "alter", function (u) { return fetchJson(u, S.loadController.signal); }, S),
+        loadSource(API_FLOW, "flow", function (u) { return fetchJson(u, S.loadController.signal); }, S),
       ]);
 
       if (S.disposed) return; // F-57: nach verspaetetem Daten-Promise nicht mehr rendern
@@ -772,12 +787,37 @@ function app(configdata, enclosingHtmlDivElement) {
   }
 
   // Daten laden: direkt oder ueber den ODAS-Proxy (proxyAktiv)
-  async function fetchJson(url) {
-    var d = await fetchOdasJson(url, configdata);
-    return Array.isArray(d.results) ? d.results : [];
+  async function fetchJson(url, signal) {
+    var d = await fetchOdasJson(url, configdata, signal);
+    // AM-B4: Eine Metadaten-URL (…/catalog/datasets/<id> ohne /records)
+    // erfuellt die Typpruefung, liefert aber kein results-Feld. Das darf nicht
+    // als „Datenquelle enthaelt keine Datensaetze“ erscheinen.
+    if (!d || !Array.isArray(d.results)) {
+      throw new Error(
+        "Unerwartetes Antwortformat: das Feld \u201eresults\u201c fehlt. Bitte den Datensatz-Endpunkt mit /records konfigurieren, nicht die Metadaten-URL.",
+      );
+    }
+    return d.results;
   }
 
   // ─── Filter & Render ─────────────────────────────────────────────────────────
+  // AM-B2: Macht den Geltungsbereich der Kennzahlen sichtbar.
+  function setKpiScope() {
+    var el = q(`#am-kpi-scope-${amUid}`);
+    if (!el) return;
+    var jahre = collectAvailableYears(S.raw);
+    if (!jahre.length) {
+      el.textContent = "";
+      return;
+    }
+    var vollstaendig =
+      String(S.yearFrom) === jahre[0] &&
+      String(S.yearTo) === jahre[jahre.length - 1];
+    el.textContent = vollstaendig
+      ? "Kennzahlen: Stand " + S.yearTo + " (gesamter Datenbestand " + jahre[0] + "\u2013" + jahre[jahre.length - 1] + ")."
+      : "Kennzahlen: Stand " + (S.yearTo || "\u2013") + " innerhalb der Auswahl " + (S.yearFrom || "\u2013") + "\u2013" + (S.yearTo || "\u2013") + ".";
+  }
+
   function applyFilter() {
     var from = parseInt(S.yearFrom, 10);
     var to = parseInt(S.yearTo, 10);
@@ -819,6 +859,10 @@ function app(configdata, enclosingHtmlDivElement) {
 
   // ─── KPIs ────────────────────────────────────────────────────────────────────
   function renderKpis() {
+    // AM-B2: Kacheln beziehen sich auf die AKTUELLE AUSWAHL (S.filtered), nicht
+    // auf den Gesamtdatensatz. Vorher widersprachen sie den Tabellen/Chart,
+    // sobald ein Jahr-Filter aktiv war (Kachel 2023 bei Tabellen bis 2015).
+    setKpiScope();
     if (S.status.alq !== "geladen") {
       setKpi("kpi-year", "nicht verfügbar");
       setKpi("kpi-alq", "nicht verfügbar");
@@ -833,12 +877,17 @@ function app(configdata, enclosingHtmlDivElement) {
       setKpiTrend("kpi-lza", "");
     }
     if (S.status.merk === "geladen") {
-      var merkLatest = latestRow(S.raw.merk);
+      var merkLatest = latestRow(S.filtered.merk);
       var merkPrev =
-        S.raw.merk.length > 1 ? S.raw.merk[S.raw.merk.length - 2] : null;
-      var alqLatest = S.status.alq === "geladen" ? latestRow(S.raw.alq) : null;
-      var year = String((alqLatest ? alqLatest.jahr : merkLatest.jahr) || "–");
-      var merk = S.raw.merk.find(function (r) {
+        S.filtered.merk.length > 1
+          ? S.filtered.merk[S.filtered.merk.length - 2]
+          : null;
+      var alqLatest =
+        S.status.alq === "geladen" ? latestRow(S.filtered.alq) : null;
+      var year = String(
+        (alqLatest ? alqLatest.jahr : merkLatest ? merkLatest.jahr : null) || "–",
+      );
+      var merk = S.filtered.merk.find(function (r) {
         return String(r.jahr) === year;
       });
 
@@ -854,9 +903,11 @@ function app(configdata, enclosingHtmlDivElement) {
     }
     if (S.status.alq !== "geladen") return;
 
-    var latest = latestRow(S.raw.alq);
+    var latest = latestRow(S.filtered.alq);
     var previous =
-      S.raw.alq.length > 1 ? S.raw.alq[S.raw.alq.length - 2] : null;
+      S.filtered.alq.length > 1
+        ? S.filtered.alq[S.filtered.alq.length - 2]
+        : null;
     if (!latest) return;
     var year = String(latest.jahr || "–");
 
@@ -999,15 +1050,23 @@ function app(configdata, enclosingHtmlDivElement) {
   }
 
   // ─── Tabellen ────────────────────────────────────────────────────────────────
-  function sourceStatusRow(status, sourceName, colspan) {
+  function sourceStatusRow(status, sourceName, colspan, fehlerText) {
     if (status === "fehlerhaft") {
+      // AM-B3: Ursache mitgeben statt nur „nicht verfügbar“.
+      var detail = String(fehlerText || "").trim();
       return (
         '<tr><td colspan="' +
         colspan +
         '" class="border-0">' +
         '<div class="alert alert-warning mb-0 mt-3">Die Datenquelle „' +
         escapeHtml(sourceName) +
-        '" ist derzeit nicht verfügbar.</div></td></tr>'
+        '" ist derzeit nicht verfügbar.' +
+        (detail
+          ? '<details class="small mt-1"><summary>Details</summary><code>' +
+            escapeHtml(detail) +
+            "</code></details>"
+          : "") +
+        "</div></td></tr>"
       );
     }
     if (status === "leer") {
@@ -1036,6 +1095,7 @@ function app(configdata, enclosingHtmlDivElement) {
         S.status.alq,
         "Arbeitslose, Arbeitslosenquote und offene Stellen",
         10,
+        S.error.alq,
       );
       return;
     }
@@ -1097,6 +1157,7 @@ function app(configdata, enclosingHtmlDivElement) {
         S.status.merk,
         "Arbeitslose nach Merkmalen",
         8,
+        S.error.merk,
       );
       return;
     }
@@ -1136,6 +1197,7 @@ function app(configdata, enclosingHtmlDivElement) {
         S.status.alter,
         "Arbeitslose nach Altersgruppen",
         12,
+        S.error.alter,
       );
       return;
     }
@@ -1179,6 +1241,7 @@ function app(configdata, enclosingHtmlDivElement) {
         S.status.flow,
         "Zu- und Abgang von Arbeitslosen",
         7,
+        S.error.flow,
       );
       return;
     }
@@ -1412,20 +1475,32 @@ function app(configdata, enclosingHtmlDivElement) {
 
   async function ensureChartJs() {
     if (window.Chart) return;
-    if (S.chartJsReady) return;
-    await new Promise(function (resolve, reject) {
-      var s = document.createElement("script");
-      s.src = "vendor/chartjs/chart.umd.min.js";
-      s.async = true;
-      s.onload = function () {
-        S.chartJsReady = true;
-        resolve();
-      };
-      s.onerror = function () {
+    // AM-B6: Einen laufenden Ladevorgang wiederverwenden (Script-id + Promise
+    // je Instanz), statt bei jedem Aufruf ein weiteres Script-Element
+    // einzufuegen; ein Fehlversuch laesst sich per „Neu laden“ wiederholen.
+    if (S.chartJsPromise) return S.chartJsPromise;
+    S.chartJsPromise = new Promise(function (resolve, reject) {
+      const chartFehler = function () {
         reject(new Error("Chart.js konnte nicht geladen werden."));
       };
+      const vorhanden = document.getElementById("am-chartjs-script");
+      if (vorhanden) {
+        vorhanden.addEventListener("load", function () { resolve(); });
+        vorhanden.addEventListener("error", chartFehler);
+        return;
+      }
+      const s = document.createElement("script");
+      s.id = "am-chartjs-script";
+      s.src = "vendor/chartjs/chart.umd.min.js";
+      s.async = true;
+      s.onload = function () { resolve(); };
+      s.onerror = chartFehler;
       document.head.appendChild(s);
+    }).catch(function (err) {
+      S.chartJsPromise = null;
+      throw err;
     });
+    return S.chartJsPromise;
   }
 
   return null;
@@ -1435,4 +1510,6 @@ function app(configdata, enclosingHtmlDivElement) {
  * addToHead() – Chart.js wird dynamisch in ensureChartJs() geladen.
  * Kein Leaflet nötig (keine Koordinatenfelder in den Datensätzen).
  */
-function addToHead() {}
+function addToHead() {
+  return ``;
+}

@@ -14,9 +14,10 @@ Interaktive Visualisierung von Arbeitsmarktkennzahlen fuer den [Open Data App St
 
 Single Page Application mit Logo, Menue, Impressum/Datenschutz/Kontakt-Seiten und Fusszeile. Die Konfiguration wird vom ODAS geladen. Inhalte:
 
-- **Kennzahlen**: Aktuellstes Datenjahr, ALQ gesamt, Arbeitslose insgesamt, Langzeitarbeitslose, gemeldete offene Stellen
+- **Kennzahlen**: Aktuellstes Datenjahr, ALQ gesamt, Arbeitslose insgesamt, Langzeitarbeitslose, gemeldete offene Stellen — jeweils bezogen auf die aktuelle Jahresauswahl (Geltungsbereich wird angezeigt)
 - **Zeitreihe**: Diagramm (Chart.js) fuer ausgewaehlte Kennzahl mit Jahresfilter
 - **Tabellenansicht**: Vier Themenbereiche (ALQ/Stellen, Merkmale, Altersgruppen, Zu-/Abgang)
+- **Teilausfall je Quelle**: Nicht erreichbare Quellen werden einzeln ausgewiesen, mit aufklappbarer Ursache
 - **Tabellen-Usability**: Sticky Header, eigener Scrollbereich je Tab, hervorgehobene Schluesselspalten
 - **Visuelle Marker**: Neuester Eintrag (Neu-Badge) sowie COVID-Jahre 2020/2021 (COVID-Badge)
 
