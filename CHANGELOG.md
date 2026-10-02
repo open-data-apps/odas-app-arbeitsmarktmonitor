@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.27.4 - 2026-10-02
+- ENH: Verwendete ODAS-Dienste in `odas-services` deklariert.
+
 ## 1.27.3 - 2026-09-10
 - **FIX:** KPI-Kacheln folgen jetzt der Jahresauswahl (AM-B2). Vorher lasen sie den Gesamtdatensatz: Bei „Jahr bis 2015" zeigten die Tabellen 1990–2015, die Kacheln aber weiterhin 2023. Der Geltungsbereich steht nun über den Kacheln.
 - **FIX:** Nicht erreichbare Quellen nennen ihre Ursache (AM-B3): Die Fehlermeldung je Quelle wird gespeichert und in der Tabelle aufklappbar angezeigt, statt nur „ist derzeit nicht verfügbar".
