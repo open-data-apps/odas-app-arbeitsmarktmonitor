@@ -767,7 +767,10 @@ function app(configdata, enclosingHtmlDivElement) {
 
       applyFilter();
       renderAll();
-      var partial = Object.values(S.raw).map(rows => rows.ladeHinweis).filter(Boolean);
+      // Teilbestand-Hinweise je Quelle mit dem Reiternamen kennzeichnen.
+      var quellenNamen = { alq: "ALQ & Stellen", merk: "Merkmale", alter: "Altersgruppen", flow: "Zu-/Abgang" };
+      var partial = Object.keys(S.raw).filter(key => S.raw[key] && S.raw[key].ladeHinweis)
+        .map(key => (quellenNamen[key] || key) + ": " + S.raw[key].ladeHinweis);
       if (partial.length) showAlert("warning", partial.join(" "));
       else clearAlert();
     } catch (err) {

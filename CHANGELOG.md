@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.27.6 - 2026-10-13
+- FIX: F-142 (Nachbesserung): Teilbestand-Hinweise nennen die betroffene Quelle (z. B. „Merkmale: Teilbestand …“).
+
 ## 1.27.5 - 2026-10-08
 - FIX: F-142: Unvollständige ODS-Fenster sichtbar ausweisen; KPI-Geltungsbereich behauptet dann keinen gesamten Datenbestand mehr.
 
