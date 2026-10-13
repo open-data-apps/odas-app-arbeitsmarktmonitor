@@ -767,7 +767,9 @@ function app(configdata, enclosingHtmlDivElement) {
 
       applyFilter();
       renderAll();
-      clearAlert();
+      var partial = Object.values(S.raw).map(rows => rows.ladeHinweis).filter(Boolean);
+      if (partial.length) showAlert("warning", partial.join(" "));
+      else clearAlert();
     } catch (err) {
       if (S.disposed) return; // F-57: nach Seitenwechsel keine Fehleranzeige mehr
       console.error(err);
@@ -797,6 +799,11 @@ function app(configdata, enclosingHtmlDivElement) {
         "Unerwartetes Antwortformat: das Feld \u201eresults\u201c fehlt. Bitte den Datensatz-Endpunkt mit /records konfigurieren, nicht die Metadaten-URL.",
       );
     }
+    // F-142: Bestehendes API-Fenster sichtbar von der Gesamtmenge unterscheiden.
+    if (Number(d.total_count) > d.results.length) {
+      d.results.ladeHinweis = "Teilbestand: " + d.results.length + " von " + d.total_count +
+        " Datensätzen geladen. Kennzahlen, Tabellen und Diagramme beziehen sich nur auf dieses Datenfenster.";
+    }
     return d.results;
   }
 
@@ -812,7 +819,8 @@ function app(configdata, enclosingHtmlDivElement) {
     }
     var vollstaendig =
       String(S.yearFrom) === jahre[0] &&
-      String(S.yearTo) === jahre[jahre.length - 1];
+      String(S.yearTo) === jahre[jahre.length - 1] &&
+      !Object.values(S.raw).some(rows => rows.ladeHinweis);
     el.textContent = vollstaendig
       ? "Kennzahlen: Stand " + S.yearTo + " (gesamter Datenbestand " + jahre[0] + "\u2013" + jahre[jahre.length - 1] + ")."
       : "Kennzahlen: Stand " + (S.yearTo || "\u2013") + " innerhalb der Auswahl " + (S.yearFrom || "\u2013") + "\u2013" + (S.yearTo || "\u2013") + ".";

@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.27.5 - 2026-10-08
+- FIX: F-142: Unvollständige ODS-Fenster sichtbar ausweisen; KPI-Geltungsbereich behauptet dann keinen gesamten Datenbestand mehr.
+
 ## 1.27.4 - 2026-10-02
 - ENH: Verwendete ODAS-Dienste in `odas-services` deklariert.
 
