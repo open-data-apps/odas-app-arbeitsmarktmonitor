@@ -6,7 +6,7 @@ Interaktive Visualisierung von Arbeitsmarktkennzahlen fuer den [Open Data App St
 
 ## Funktionen
 
-![Screenshot der Arbeitsmarktmonitor-App 1](assets/Desktop_Screenshot_1.png)
+![Screenshot der Arbeitsmarktmonitor-App 1](assets/Desktop_Screenshot.png)
 
 ![Screenshot der Arbeitsmarktmonitor-App 2](assets/Desktop_Screenshot_2.png)
 
