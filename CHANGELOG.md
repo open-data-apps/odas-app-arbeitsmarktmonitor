@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.27.10 - 2026-10-15
+- FIX: Kopfzeile bei 360 px ohne Überlauf (Template): Logo- und Burger-Spalte passen sich der Breite an, das Menü-Symbol ragt nicht mehr über den rechten Rand. Keine Änderung an App-Code oder Konfiguration.
+
 ## 1.27.9 - 2026-10-15
 - FIX: Unter-Tabs (ALQ & Stellen, Merkmale, Altersgruppen, Zu-/Abgang) haben wieder Abstand zwischen den Beschriftungen: die globalen Menüregeln des Seitenmenüs (`.nav-item`/`.nav-link`) überschreiben die Tab-Abstände nicht mehr.
 
