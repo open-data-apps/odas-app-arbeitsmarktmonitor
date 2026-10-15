@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.27.9 - 2026-10-15
+- FIX: Unter-Tabs (ALQ & Stellen, Merkmale, Altersgruppen, Zu-/Abgang) haben wieder Abstand zwischen den Beschriftungen: die globalen Menüregeln des Seitenmenüs (`.nav-item`/`.nav-link`) überschreiben die Tab-Abstände nicht mehr.
+
 ## 1.27.8 - 2026-10-15
 - DOCS: Neue Store-Screenshots: je drei Desktop- (1440 × 1000) und Mobile-Aufnahmen (390 × 844) der aktuellen App, aufgenommen auf der Dev-Instanz. Bisherige Bilder nach `docs/screenshots/archive/2026-10-13/` verschoben, Bildverweis im README angepasst. Keine Änderung an App-Code oder Konfiguration.
 

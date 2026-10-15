@@ -192,3 +192,12 @@
   margin-top: 0.3rem;
   padding-top: 0.3rem;
 }
+
+/* Unter-Tabs: globale .nav-item/.nav-link-Regeln des Seitenmenüs (app-base.css) überschreiben */
+.am-root #sub-tabs .nav-item {
+  margin-bottom: 0;
+}
+.am-root #sub-tabs .nav-link {
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+}
